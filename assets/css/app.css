@@ -1,0 +1,9 @@
+
+.hidden {
+    display: none;
+}
+
+#save_as_svg, #save_as_png {
+    height: 240px;
+    width: 240px;
+}
