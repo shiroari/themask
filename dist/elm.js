@@ -15252,6 +15252,26 @@ var _elm_lang$svg$Svg_Events$onMouseOut = _elm_lang$svg$Svg_Events$simpleOn('mou
 var _elm_lang$svg$Svg_Events$onMouseOver = _elm_lang$svg$Svg_Events$simpleOn('mouseover');
 var _elm_lang$svg$Svg_Events$onMouseUp = _elm_lang$svg$Svg_Events$simpleOn('mouseup');
 
+var _user$project$Main$getFeatureFile = F2(
+	function (featureIndex, featureInfo) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'assets/svg',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				featureInfo.path,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'/',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						A3(
+							_elm_lang$core$String$padLeft,
+							3,
+							_elm_lang$core$Native_Utils.chr('0'),
+							_elm_lang$core$Basics$toString(featureIndex + 1)),
+						'.svg'))));
+	});
 var _user$project$Main$getHSL = F3(
 	function (h, s, l) {
 		return A2(
@@ -15274,6 +15294,7 @@ var _user$project$Main$getHSL = F3(
 								_elm_lang$core$Basics$toString(l),
 								'%,1.0)'))))));
 	});
+var _user$project$Main$getSkinTone = A3(_user$project$Main$getHSL, 41, 100, 87);
 var _user$project$Main$getRGB = F3(
 	function (r, g, b) {
 		return A2(
@@ -15296,179 +15317,95 @@ var _user$project$Main$getRGB = F3(
 								_elm_lang$core$Basics$toString(b),
 								')'))))));
 	});
-var _user$project$Main$maskAsColor = function (mask) {
-	return A2(
-		_elm_lang$core$Basics_ops['++'],
-		'rgb(',
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			_elm_lang$core$Basics$toString(mask.face),
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				',',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$Basics$toString(mask.hair),
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						',',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							_elm_lang$core$Basics$toString(mask.eyes),
-							')'))))));
+var _user$project$Main$getColor = function (c) {
+	return _elm_lang$core$Native_Utils.eq(c, 0) ? '#eee' : A3(_user$project$Main$getHSL, 100 + (c * 14), 90, 80);
 };
-var _user$project$Main$getColor = F2(
-	function (t, f) {
-		return A3(_user$project$Main$getHSL, 120 + (f * 14), 90, 80);
-	});
-var _user$project$Main$subscriptions = function (model) {
-	return _elm_lang$core$Platform_Sub$none;
-};
-var _user$project$Main$renderBorder = A2(
-	_elm_lang$svg$Svg$circle,
-	{
-		ctor: '::',
-		_0: _elm_lang$svg$Svg_Attributes$cx('120'),
-		_1: {
-			ctor: '::',
-			_0: _elm_lang$svg$Svg_Attributes$cy('120'),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$r('100'),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
-					_1: {
+var _user$project$Main$renderGenFeature = F3(
+	function (mask, feature, featureIndex) {
+		var _p0 = feature;
+		switch (_p0.ctor) {
+			case 'Background':
+				return A2(
+					_elm_lang$svg$Svg$rect,
+					{
 						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+						_0: _elm_lang$svg$Svg_Attributes$x('10'),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$fill('#f3f3f3'),
-							_1: {ctor: '[]'}
+							_0: _elm_lang$svg$Svg_Attributes$y('10'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$width('220'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$height('220'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$rx('15'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$ry('15'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$strokeWidth('1'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$svg$Svg_Attributes$stroke('transparent'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$svg$Svg_Attributes$fill(
+															_user$project$Main$getColor(featureIndex)),
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
 						}
-					}
-				}
-			}
-		}
-	},
-	{ctor: '[]'});
-var _user$project$Main$newMask = F2(
-	function (featureIndex, model) {
-		var mask = model.mask;
-		var _p0 = model.featureType;
-		switch (_p0) {
-			case 0:
-				return _elm_lang$core$Native_Utils.update(
-					mask,
-					{face: featureIndex});
-			case 1:
-				return _elm_lang$core$Native_Utils.update(
-					mask,
-					{hair: featureIndex});
-			case 2:
-				return _elm_lang$core$Native_Utils.update(
-					mask,
-					{eyes: featureIndex});
-			case 3:
-				return _elm_lang$core$Native_Utils.update(
-					mask,
-					{eyebrows: featureIndex});
-			case 4:
-				return _elm_lang$core$Native_Utils.update(
-					mask,
-					{nose: featureIndex});
-			case 5:
-				return _elm_lang$core$Native_Utils.update(
-					mask,
-					{mouth: featureIndex});
-			default:
-				return mask;
-		}
-	});
-var _user$project$Main$model = {
-	featureType: 0,
-	featureIndex: 0,
-	featureIndexOver: -1,
-	mask: {sex: 0, face: 19, hair: 9, eyes: 4, eyebrows: 0, nose: 0, mouth: 0},
-	mdl: _debois$elm_mdl$Material$model
-};
-var _user$project$Main$init = function (_p1) {
-	return {ctor: '_Tuple2', _0: _user$project$Main$model, _1: _elm_lang$core$Platform_Cmd$none};
-};
-var _user$project$Main$palette = function (x) {
-	var _p2 = x;
-	switch (_p2.ctor) {
-		case 'Sex':
-			return {name: 'Sex', size: 2};
-		case 'Face':
-			return {name: 'Face', size: 20};
-		case 'Hair':
-			return {name: 'Hair', size: 18};
-		case 'Eyes':
-			return {name: 'Eyes', size: 12};
-		case 'Eyebrows':
-			return {name: 'Eyebrow', size: 20};
-		case 'Nose':
-			return {name: 'Nose', size: 20};
-		case 'Mouth':
-			return {name: 'Mouth', size: 12};
-		default:
-			return {name: '', size: 0};
-	}
-};
-var _user$project$Main$Mask = F7(
-	function (a, b, c, d, e, f, g) {
-		return {sex: a, face: b, hair: c, eyes: d, eyebrows: e, nose: f, mouth: g};
-	});
-var _user$project$Main$Palette = F2(
-	function (a, b) {
-		return {name: a, size: b};
-	});
-var _user$project$Main$Model = F5(
-	function (a, b, c, d, e) {
-		return {featureType: a, featureIndex: b, featureIndexOver: c, mask: d, mdl: e};
-	});
-var _user$project$Main$Undefined = {ctor: 'Undefined'};
-var _user$project$Main$Mouth = {ctor: 'Mouth'};
-var _user$project$Main$Nose = {ctor: 'Nose'};
-var _user$project$Main$Eyebrows = {ctor: 'Eyebrows'};
-var _user$project$Main$Eyes = {ctor: 'Eyes'};
-var _user$project$Main$Hair = {ctor: 'Hair'};
-var _user$project$Main$Face = {ctor: 'Face'};
-var _user$project$Main$toFeature = function (x) {
-	var _p3 = x;
-	switch (_p3) {
-		case 0:
-			return _user$project$Main$Face;
-		case 1:
-			return _user$project$Main$Hair;
-		case 2:
-			return _user$project$Main$Eyes;
-		case 3:
-			return _user$project$Main$Eyebrows;
-		case 4:
-			return _user$project$Main$Nose;
-		case 5:
-			return _user$project$Main$Mouth;
-		default:
-			return _user$project$Main$Undefined;
-	}
-};
-var _user$project$Main$renderFeature = F2(
-	function (featureIndex, feature) {
-		if (_elm_lang$core$Native_Utils.eq(featureIndex, 0) && (!_elm_lang$core$Native_Utils.eq(feature, _user$project$Main$Face))) {
-			return A2(
-				_elm_lang$svg$Svg$g,
-				{ctor: '[]'},
-				{ctor: '[]'});
-		} else {
-			var _p4 = feature;
-			switch (_p4.ctor) {
-				case 'Face':
-					return A2(
-						_elm_lang$svg$Svg$g,
-						{ctor: '[]'},
-						{
+					},
+					{ctor: '[]'});
+			case 'Face':
+				return A2(
+					_elm_lang$svg$Svg$g,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$svg$Svg$path,
+							{
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$fill(_user$project$Main$getSkinTone),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$d(
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													'M70 140 C ',
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														_elm_lang$core$Basics$toString(110 - (featureIndex * 3)),
+														A2(
+															_elm_lang$core$Basics_ops['++'],
+															' 200, ',
+															A2(
+																_elm_lang$core$Basics_ops['++'],
+																_elm_lang$core$Basics$toString(130 + (featureIndex * 3)),
+																A2(_elm_lang$core$Basics_ops['++'], ' 200', ', 170 140')))))),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							},
+							{ctor: '[]'}),
+						_1: {
 							ctor: '::',
 							_0: A2(
 								_elm_lang$svg$Svg$path,
@@ -15480,7 +15417,7 @@ var _user$project$Main$renderFeature = F2(
 										_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$fill('rgb(255, 234, 189)'),
+											_0: _elm_lang$svg$Svg_Attributes$fill(_user$project$Main$getSkinTone),
 											_1: {
 												ctor: '::',
 												_0: _elm_lang$svg$Svg_Attributes$d(
@@ -15489,118 +15426,119 @@ var _user$project$Main$renderFeature = F2(
 														'M70 140 C ',
 														A2(
 															_elm_lang$core$Basics_ops['++'],
-															_elm_lang$core$Basics$toString(110 - (featureIndex * 3)),
+															_elm_lang$core$Basics$toString(70 - (featureIndex * 3)),
 															A2(
 																_elm_lang$core$Basics_ops['++'],
-																' 200, ',
+																' 30, ',
 																A2(
 																	_elm_lang$core$Basics_ops['++'],
-																	_elm_lang$core$Basics$toString(130 + (featureIndex * 3)),
-																	A2(_elm_lang$core$Basics_ops['++'], ' 200', ', 170 140')))))),
+																	_elm_lang$core$Basics$toString(170 + (featureIndex * 3)),
+																	A2(_elm_lang$core$Basics_ops['++'], ' 30', ', 170 140')))))),
 												_1: {ctor: '[]'}
 											}
 										}
 									}
 								},
 								{ctor: '[]'}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_elm_lang$svg$Svg$path,
-									{
+							_1: {ctor: '[]'}
+						}
+					});
+			case 'Hair':
+				return A2(
+					_elm_lang$svg$Svg$g,
+					{ctor: '[]'},
+					A2(
+						_elm_lang$core$List$map,
+						function (a) {
+							var s = 50.0;
+							var af = _elm_lang$core$Basics$toFloat(a);
+							var alpha = af / _elm_lang$core$Basics$pi;
+							var e = (55.0 + _elm_lang$core$Basics$toFloat(featureIndex)) + (10 * _elm_lang$core$Basics$sin(alpha));
+							return A2(
+								_elm_lang$svg$Svg$line,
+								{
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$x1(
+										_elm_lang$core$Basics$toString(
+											120 + (s * _elm_lang$core$Basics$cos(alpha)))),
+									_1: {
 										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
-											_1: {
-												ctor: '::',
-												_0: _elm_lang$svg$Svg_Attributes$fill('rgb(255, 234, 189)'),
-												_1: {
-													ctor: '::',
-													_0: _elm_lang$svg$Svg_Attributes$d(
-														A2(
-															_elm_lang$core$Basics_ops['++'],
-															'M70 140 C ',
-															A2(
-																_elm_lang$core$Basics_ops['++'],
-																_elm_lang$core$Basics$toString(70 - (featureIndex * 3)),
-																A2(
-																	_elm_lang$core$Basics_ops['++'],
-																	' 30, ',
-																	A2(
-																		_elm_lang$core$Basics_ops['++'],
-																		_elm_lang$core$Basics$toString(170 + (featureIndex * 3)),
-																		A2(_elm_lang$core$Basics_ops['++'], ' 30', ', 170 140')))))),
-													_1: {ctor: '[]'}
-												}
-											}
-										}
-									},
-									{ctor: '[]'}),
-								_1: {ctor: '[]'}
-							}
-						});
-				case 'Hair':
-					return A2(
-						_elm_lang$svg$Svg$g,
-						{ctor: '[]'},
-						A2(
-							_elm_lang$core$List$map,
-							function (a) {
-								var s = 50.0;
-								var af = _elm_lang$core$Basics$toFloat(a);
-								var alpha = af / 3.14;
-								var e = (55.0 + _elm_lang$core$Basics$toFloat(featureIndex)) + (10 * _elm_lang$core$Basics$sin(alpha));
-								return A2(
-									_elm_lang$svg$Svg$line,
-									{
-										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$x1(
+										_0: _elm_lang$svg$Svg_Attributes$y1(
 											_elm_lang$core$Basics$toString(
-												120 + (s * _elm_lang$core$Basics$cos(alpha)))),
+												120 - (s * _elm_lang$core$Basics$sin(alpha)))),
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$y1(
+											_0: _elm_lang$svg$Svg_Attributes$x2(
 												_elm_lang$core$Basics$toString(
-													120 - (s * _elm_lang$core$Basics$sin(alpha)))),
+													120 + (e * _elm_lang$core$Basics$cos(alpha)))),
 											_1: {
 												ctor: '::',
-												_0: _elm_lang$svg$Svg_Attributes$x2(
+												_0: _elm_lang$svg$Svg_Attributes$y2(
 													_elm_lang$core$Basics$toString(
-														120 + (e * _elm_lang$core$Basics$cos(alpha)))),
+														120 - (e * _elm_lang$core$Basics$sin(alpha)))),
 												_1: {
 													ctor: '::',
-													_0: _elm_lang$svg$Svg_Attributes$y2(
-														_elm_lang$core$Basics$toString(
-															120 - (e * _elm_lang$core$Basics$sin(alpha)))),
+													_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
 													_1: {
 														ctor: '::',
-														_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
-														_1: {
-															ctor: '::',
-															_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
-															_1: {ctor: '[]'}
-														}
+														_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+														_1: {ctor: '[]'}
 													}
 												}
 											}
 										}
-									},
-									{ctor: '[]'});
+									}
+								},
+								{ctor: '[]'});
+						},
+						A2(_elm_lang$core$List$range, 0, 10)));
+			case 'Eyes':
+				return A2(
+					_elm_lang$svg$Svg$g,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$svg$Svg$ellipse,
+							{
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$cx('90'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$cy('120'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$rx(
+											_elm_lang$core$Basics$toString(3 + featureIndex)),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$ry(
+												_elm_lang$core$Basics$toString(14 - featureIndex)),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$strokeWidth('2'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$svg$Svg_Attributes$fill('#666'),
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}
+									}
+								}
 							},
-							A2(_elm_lang$core$List$range, 0, 10)));
-				case 'Eyes':
-					return A2(
-						_elm_lang$svg$Svg$g,
-						{ctor: '[]'},
-						{
+							{ctor: '[]'}),
+						_1: {
 							ctor: '::',
 							_0: A2(
 								_elm_lang$svg$Svg$ellipse,
 								{
 									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$cx('90'),
+									_0: _elm_lang$svg$Svg_Attributes$cx('150'),
 									_1: {
 										ctor: '::',
 										_0: _elm_lang$svg$Svg_Attributes$cy('120'),
@@ -15630,50 +15568,49 @@ var _user$project$Main$renderFeature = F2(
 									}
 								},
 								{ctor: '[]'}),
-							_1: {
+							_1: {ctor: '[]'}
+						}
+					});
+			case 'Eyebrows':
+				return A2(
+					_elm_lang$svg$Svg$g,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$svg$Svg$path,
+							{
 								ctor: '::',
-								_0: A2(
-									_elm_lang$svg$Svg$ellipse,
-									{
+								_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+									_1: {
 										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$cx('150'),
+										_0: _elm_lang$svg$Svg_Attributes$fill('none'),
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$cy('120'),
-											_1: {
-												ctor: '::',
-												_0: _elm_lang$svg$Svg_Attributes$rx(
-													_elm_lang$core$Basics$toString(3 + featureIndex)),
-												_1: {
-													ctor: '::',
-													_0: _elm_lang$svg$Svg_Attributes$ry(
-														_elm_lang$core$Basics$toString(14 - featureIndex)),
-													_1: {
-														ctor: '::',
-														_0: _elm_lang$svg$Svg_Attributes$strokeWidth('2'),
-														_1: {
-															ctor: '::',
-															_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
-															_1: {
-																ctor: '::',
-																_0: _elm_lang$svg$Svg_Attributes$fill('#666'),
-																_1: {ctor: '[]'}
-															}
-														}
-													}
-												}
-											}
+											_0: _elm_lang$svg$Svg_Attributes$d(
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													'M80 100 C ',
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														_elm_lang$core$Basics$toString(90 - featureIndex),
+														A2(
+															_elm_lang$core$Basics_ops['++'],
+															' 90, ',
+															A2(
+																_elm_lang$core$Basics_ops['++'],
+																_elm_lang$core$Basics$toString(90 + featureIndex),
+																A2(_elm_lang$core$Basics_ops['++'], ' 90', ', 100 100')))))),
+											_1: {ctor: '[]'}
 										}
-									},
-									{ctor: '[]'}),
-								_1: {ctor: '[]'}
-							}
-						});
-				case 'Eyebrows':
-					return A2(
-						_elm_lang$svg$Svg$g,
-						{ctor: '[]'},
-						{
+									}
+								}
+							},
+							{ctor: '[]'}),
+						_1: {
 							ctor: '::',
 							_0: A2(
 								_elm_lang$svg$Svg$path,
@@ -15691,171 +15628,346 @@ var _user$project$Main$renderFeature = F2(
 												_0: _elm_lang$svg$Svg_Attributes$d(
 													A2(
 														_elm_lang$core$Basics_ops['++'],
-														'M80 100 C ',
+														'M140 100 C ',
 														A2(
 															_elm_lang$core$Basics_ops['++'],
-															_elm_lang$core$Basics$toString(90 - featureIndex),
+															_elm_lang$core$Basics$toString(150 - featureIndex),
 															A2(
 																_elm_lang$core$Basics_ops['++'],
 																' 90, ',
 																A2(
 																	_elm_lang$core$Basics_ops['++'],
-																	_elm_lang$core$Basics$toString(90 + featureIndex),
-																	A2(_elm_lang$core$Basics_ops['++'], ' 90', ', 100 100')))))),
+																	_elm_lang$core$Basics$toString(150 + featureIndex),
+																	A2(_elm_lang$core$Basics_ops['++'], ' 90', ', 160 100')))))),
 												_1: {ctor: '[]'}
 											}
 										}
 									}
 								},
 								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}
+					});
+			case 'Nose':
+				return A2(
+					_elm_lang$svg$Svg$path,
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
 							_1: {
 								ctor: '::',
-								_0: A2(
-									_elm_lang$svg$Svg$path,
-									{
+								_0: _elm_lang$svg$Svg_Attributes$fill('none'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$d(
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											'M110 140 C ',
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												_elm_lang$core$Basics$toString(120 - featureIndex),
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													' 150, ',
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														_elm_lang$core$Basics$toString(120 + featureIndex),
+														A2(_elm_lang$core$Basics_ops['++'], ' 150', ', 130 140')))))),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					},
+					{ctor: '[]'});
+			case 'Mouth':
+				return A2(
+					_elm_lang$svg$Svg$ellipse,
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$cx('120'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$cy('165'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$rx(
+									_elm_lang$core$Basics$toString(20 - featureIndex)),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$ry(
+										_elm_lang$core$Basics$toString(1 + featureIndex)),
+									_1: {
 										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+										_0: _elm_lang$svg$Svg_Attributes$strokeWidth('2'),
 										_1: {
 											ctor: '::',
 											_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
 											_1: {
 												ctor: '::',
-												_0: _elm_lang$svg$Svg_Attributes$fill('none'),
-												_1: {
-													ctor: '::',
-													_0: _elm_lang$svg$Svg_Attributes$d(
-														A2(
-															_elm_lang$core$Basics_ops['++'],
-															'M140 100 C ',
-															A2(
-																_elm_lang$core$Basics_ops['++'],
-																_elm_lang$core$Basics$toString(150 - featureIndex),
-																A2(
-																	_elm_lang$core$Basics_ops['++'],
-																	' 90, ',
-																	A2(
-																		_elm_lang$core$Basics_ops['++'],
-																		_elm_lang$core$Basics$toString(150 + featureIndex),
-																		A2(_elm_lang$core$Basics_ops['++'], ' 90', ', 160 100')))))),
-													_1: {ctor: '[]'}
-												}
+												_0: _elm_lang$svg$Svg_Attributes$fill('#666'),
+												_1: {ctor: '[]'}
 											}
 										}
-									},
-									{ctor: '[]'}),
-								_1: {ctor: '[]'}
+									}
+								}
 							}
-						});
-				case 'Nose':
-					return A2(
-						_elm_lang$svg$Svg$path,
-						{
+						}
+					},
+					{ctor: '[]'});
+			default:
+				return A2(
+					_elm_lang$svg$Svg$g,
+					{ctor: '[]'},
+					{ctor: '[]'});
+		}
+	});
+var _user$project$Main$renderBorder = function (mask) {
+	return A2(
+		_elm_lang$svg$Svg$g,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$svg$Svg$circle,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$cx('120'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$cy('120'),
+						_1: {
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+							_0: _elm_lang$svg$Svg_Attributes$r('100'),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+								_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
 								_1: {
 									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$fill('none'),
+									_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
 									_1: {
 										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$d(
-											A2(
-												_elm_lang$core$Basics_ops['++'],
-												'M110 140 C ',
-												A2(
-													_elm_lang$core$Basics_ops['++'],
-													_elm_lang$core$Basics$toString(120 - featureIndex),
-													A2(
-														_elm_lang$core$Basics_ops['++'],
-														' 150, ',
-														A2(
-															_elm_lang$core$Basics_ops['++'],
-															_elm_lang$core$Basics$toString(120 + featureIndex),
-															A2(_elm_lang$core$Basics_ops['++'], ' 150', ', 130 140')))))),
+										_0: _elm_lang$svg$Svg_Attributes$fill(
+											_user$project$Main$getColor(mask.background)),
 										_1: {ctor: '[]'}
 									}
 								}
 							}
-						},
-						{ctor: '[]'});
-				case 'Mouth':
-					return A2(
-						_elm_lang$svg$Svg$ellipse,
-						{
-							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$cx('120'),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$cy('165'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$rx(
-										_elm_lang$core$Basics$toString(20 - featureIndex)),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$ry(
-											_elm_lang$core$Basics$toString(1 + featureIndex)),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$strokeWidth('2'),
-											_1: {
-												ctor: '::',
-												_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
-												_1: {
-													ctor: '::',
-													_0: _elm_lang$svg$Svg_Attributes$fill('#666'),
-													_1: {ctor: '[]'}
-												}
-											}
-										}
-									}
-								}
-							}
-						},
-						{ctor: '[]'});
-				default:
-					return A2(
-						_elm_lang$svg$Svg$g,
-						{ctor: '[]'},
-						{ctor: '[]'});
-			}
+						}
+					}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Main$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$none;
+};
+var _user$project$Main$getFeature = F2(
+	function (mask, feature) {
+		var _p1 = feature;
+		switch (_p1.ctor) {
+			case 'Face':
+				return mask.face;
+			case 'Hair':
+				return mask.hair;
+			case 'Eyes':
+				return mask.eyes;
+			case 'Eyebrows':
+				return mask.eyebrows;
+			case 'Nose':
+				return mask.nose;
+			case 'Mouth':
+				return mask.mouth;
+			case 'Sex':
+				return mask.sex;
+			case 'Background':
+				return mask.background;
+			default:
+				return 0;
 		}
 	});
-var _user$project$Main$maskView = function (model) {
+var _user$project$Main$model = {
+	featureType: 0,
+	featureIndex: 0,
+	featureIndexOver: -1,
+	mask: {background: 0, sex: 0, face: 0, hair: 0, eyes: 4, eyebrows: 1, nose: 0, mouth: 1},
+	mdl: _debois$elm_mdl$Material$model
+};
+var _user$project$Main$init = function (_p2) {
+	return {ctor: '_Tuple2', _0: _user$project$Main$model, _1: _elm_lang$core$Platform_Cmd$none};
+};
+var _user$project$Main$getPalette = function (x) {
+	var _p3 = x;
+	switch (_p3.ctor) {
+		case 'Sex':
+			return {name: 'Sex', required: true, path: '', presetSize: 0, size: 0};
+		case 'Face':
+			return {name: 'Face', required: true, path: '/face', presetSize: 1, size: 25};
+		case 'Hair':
+			return {name: 'Hair', required: false, path: '/hair', presetSize: 0, size: 20};
+		case 'Eyes':
+			return {name: 'Eyes', required: false, path: '/eyes', presetSize: 0, size: 12};
+		case 'Eyebrows':
+			return {name: 'Eyebrow', required: false, path: '/eyebrows', presetSize: 0, size: 20};
+		case 'Nose':
+			return {name: 'Nose', required: false, path: '/nose', presetSize: 0, size: 20};
+		case 'Mouth':
+			return {name: 'Mouth', required: false, path: '/mouth', presetSize: 0, size: 14};
+		case 'Background':
+			return {name: 'Background', required: true, path: '', presetSize: 0, size: 23};
+		default:
+			return {name: '', required: false, path: '', presetSize: 0, size: 0};
+	}
+};
+var _user$project$Main$renderFeatureWitIndex = F3(
+	function (mask, feature, featureIndex) {
+		var featureInfo = _user$project$Main$getPalette(feature);
+		return (_elm_lang$core$Native_Utils.eq(featureIndex, 0) && (!_elm_lang$core$Native_Utils.eq(featureInfo.required, true))) ? A2(
+			_elm_lang$svg$Svg$g,
+			{ctor: '[]'},
+			{ctor: '[]'}) : ((_elm_lang$core$Native_Utils.cmp(featureIndex, featureInfo.presetSize) < 0) ? A2(
+			_elm_lang$svg$Svg$image,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$xlinkHref(
+					A2(_user$project$Main$getFeatureFile, featureIndex, featureInfo)),
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'}) : A3(_user$project$Main$renderGenFeature, mask, feature, featureIndex));
+	});
+var _user$project$Main$renderFeature = F2(
+	function (mask, feature) {
+		return A3(
+			_user$project$Main$renderFeatureWitIndex,
+			mask,
+			feature,
+			A2(_user$project$Main$getFeature, mask, feature));
+	});
+var _user$project$Main$Mask = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {sex: a, face: b, hair: c, eyes: d, eyebrows: e, nose: f, mouth: g, background: h};
+	});
+var _user$project$Main$Palette = F5(
+	function (a, b, c, d, e) {
+		return {name: a, required: b, path: c, presetSize: d, size: e};
+	});
+var _user$project$Main$Model = F5(
+	function (a, b, c, d, e) {
+		return {featureType: a, featureIndex: b, featureIndexOver: c, mask: d, mdl: e};
+	});
+var _user$project$Main$Undefined = {ctor: 'Undefined'};
+var _user$project$Main$Background = {ctor: 'Background'};
+var _user$project$Main$Mouth = {ctor: 'Mouth'};
+var _user$project$Main$Nose = {ctor: 'Nose'};
+var _user$project$Main$Eyebrows = {ctor: 'Eyebrows'};
+var _user$project$Main$Eyes = {ctor: 'Eyes'};
+var _user$project$Main$Hair = {ctor: 'Hair'};
+var _user$project$Main$Face = {ctor: 'Face'};
+var _user$project$Main$toFeature = function (x) {
+	var _p4 = x;
+	switch (_p4) {
+		case 0:
+			return _user$project$Main$Face;
+		case 1:
+			return _user$project$Main$Hair;
+		case 2:
+			return _user$project$Main$Eyes;
+		case 3:
+			return _user$project$Main$Eyebrows;
+		case 4:
+			return _user$project$Main$Nose;
+		case 5:
+			return _user$project$Main$Mouth;
+		case 6:
+			return _user$project$Main$Background;
+		default:
+			return _user$project$Main$Undefined;
+	}
+};
+var _user$project$Main$newMask = F2(
+	function (featureIndex, model) {
+		var feature = _user$project$Main$toFeature(model.featureType);
+		var mask = model.mask;
+		var _p5 = feature;
+		switch (_p5.ctor) {
+			case 'Face':
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{face: featureIndex});
+			case 'Hair':
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{hair: featureIndex});
+			case 'Eyes':
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{eyes: featureIndex});
+			case 'Eyebrows':
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{eyebrows: featureIndex});
+			case 'Nose':
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{nose: featureIndex});
+			case 'Mouth':
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{mouth: featureIndex});
+			case 'Background':
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{background: featureIndex});
+			case 'Sex':
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{sex: featureIndex});
+			default:
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{mouth: featureIndex});
+		}
+	});
+var _user$project$Main$maskView = function (mask) {
 	return A2(
 		_elm_lang$svg$Svg$svg,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$width(240),
+			_0: _elm_lang$svg$Svg_Attributes$id('avatar'),
 			_1: {
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$height(240),
-				_1: {ctor: '[]'}
+				_0: _elm_lang$svg$Svg_Attributes$width('240'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$height('240'),
+					_1: {ctor: '[]'}
+				}
 			}
 		},
 		{
 			ctor: '::',
-			_0: _user$project$Main$renderBorder,
+			_0: _user$project$Main$renderBorder(mask),
 			_1: {
 				ctor: '::',
-				_0: A2(_user$project$Main$renderFeature, model.mask.hair, _user$project$Main$Hair),
+				_0: A2(_user$project$Main$renderFeature, mask, _user$project$Main$Face),
 				_1: {
 					ctor: '::',
-					_0: A2(_user$project$Main$renderFeature, model.mask.face, _user$project$Main$Face),
+					_0: A2(_user$project$Main$renderFeature, mask, _user$project$Main$Eyes),
 					_1: {
 						ctor: '::',
-						_0: A2(_user$project$Main$renderFeature, model.mask.eyes, _user$project$Main$Eyes),
+						_0: A2(_user$project$Main$renderFeature, mask, _user$project$Main$Eyebrows),
 						_1: {
 							ctor: '::',
-							_0: A2(_user$project$Main$renderFeature, model.mask.eyebrows, _user$project$Main$Eyebrows),
+							_0: A2(_user$project$Main$renderFeature, mask, _user$project$Main$Nose),
 							_1: {
 								ctor: '::',
-								_0: A2(_user$project$Main$renderFeature, model.mask.nose, _user$project$Main$Nose),
+								_0: A2(_user$project$Main$renderFeature, mask, _user$project$Main$Mouth),
 								_1: {
 									ctor: '::',
-									_0: A2(_user$project$Main$renderFeature, model.mask.mouth, _user$project$Main$Mouth),
+									_0: A2(_user$project$Main$renderFeature, mask, _user$project$Main$Hair),
 									_1: {ctor: '[]'}
 								}
 							}
@@ -15877,6 +15989,8 @@ var _user$project$Main$Select = function (a) {
 };
 var _user$project$Main$renderFeaturePreview = F2(
 	function (featureIndex, model) {
+		var feature = _user$project$Main$toFeature(model.featureType);
+		var featureInfo = _user$project$Main$getPalette(feature);
 		return A2(
 			_elm_lang$svg$Svg$svg,
 			{
@@ -15937,17 +16051,14 @@ var _user$project$Main$renderFeaturePreview = F2(
 					{ctor: '[]'}),
 				_1: {
 					ctor: '::',
-					_0: (_elm_lang$core$Native_Utils.eq(featureIndex, 0) && (_elm_lang$core$Native_Utils.cmp(model.featureType, 1) > -1)) ? A2(
+					_0: (_elm_lang$core$Native_Utils.eq(featureIndex, 0) && (!_elm_lang$core$Native_Utils.eq(featureInfo.required, true))) ? A2(
 						_elm_lang$svg$Svg$image,
 						{
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$xlinkHref('./na.svg'),
+							_0: _elm_lang$svg$Svg_Attributes$xlinkHref('assets/svg/na.svg'),
 							_1: {ctor: '[]'}
 						},
-						{ctor: '[]'}) : A2(
-						_user$project$Main$renderFeature,
-						featureIndex,
-						_user$project$Main$toFeature(model.featureType)),
+						{ctor: '[]'}) : A3(_user$project$Main$renderFeatureWitIndex, model.mask, feature, featureIndex),
 					_1: {
 						ctor: '::',
 						_0: A2(
@@ -16015,33 +16126,33 @@ var _user$project$Main$Mdl = function (a) {
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p5 = msg;
-		switch (_p5.ctor) {
+		var _p6 = msg;
+		switch (_p6.ctor) {
 			case 'Select':
-				var _p6 = _p5._0;
-				var mask_ = A2(_user$project$Main$newMask, _p6, model);
+				var _p7 = _p6._0;
+				var mask_ = A2(_user$project$Main$newMask, _p7, model);
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{featureIndex: _p6, mask: mask_}),
+						{featureIndex: _p7, mask: mask_}),
 					{ctor: '[]'});
 			case 'SelectOver':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{featureIndexOver: _p5._0}),
+						{featureIndexOver: _p6._0}),
 					{ctor: '[]'});
 			case 'Mode':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{featureType: _p5._0, featureIndex: 0}),
+						{featureType: _p6._0, featureIndex: 0}),
 					{ctor: '[]'});
 			default:
-				return A3(_debois$elm_mdl$Material$update, _user$project$Main$Mdl, _p5._0, model);
+				return A3(_debois$elm_mdl$Material$update, _user$project$Main$Mdl, _p6._0, model);
 		}
 	});
 var _user$project$Main$view = function (model) {
@@ -16065,7 +16176,7 @@ var _user$project$Main$view = function (model) {
 				},
 				{
 					ctor: '::',
-					_0: _user$project$Main$maskView(model),
+					_0: _user$project$Main$maskView(model.mask),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
@@ -16105,12 +16216,12 @@ var _user$project$Main$view = function (model) {
 								{
 									ctor: '::',
 									_0: _elm_lang$svg$Svg$text(
-										_user$project$Main$palette(
+										_user$project$Main$getPalette(
 											_user$project$Main$toFeature(a)).name),
 									_1: {ctor: '[]'}
 								});
 						},
-						A2(_elm_lang$core$List$range, 0, 6)),
+						A2(_elm_lang$core$List$range, 0, 7)),
 					A2(
 						_elm_lang$core$List$map,
 						function (a) {
@@ -16119,7 +16230,7 @@ var _user$project$Main$view = function (model) {
 						A2(
 							_elm_lang$core$List$range,
 							0,
-							_user$project$Main$palette(feature).size))),
+							_user$project$Main$getPalette(feature).size))),
 				_1: {ctor: '[]'}
 			}
 		});
