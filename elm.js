@@ -15506,28 +15506,6 @@ var _debois$elm_mdl$Material_Typography$display3 = _debois$elm_mdl$Material_Opti
 var _debois$elm_mdl$Material_Typography$display2 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-2-color-contrast');
 var _debois$elm_mdl$Material_Typography$display1 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-1-color-contrast');
 
-var _elm_lang$core$Native_Bitwise = function() {
-
-return {
-	and: F2(function and(a, b) { return a & b; }),
-	or: F2(function or(a, b) { return a | b; }),
-	xor: F2(function xor(a, b) { return a ^ b; }),
-	complement: function complement(a) { return ~a; },
-	shiftLeftBy: F2(function(offset, a) { return a << offset; }),
-	shiftRightBy: F2(function(offset, a) { return a >> offset; }),
-	shiftRightZfBy: F2(function(offset, a) { return a >>> offset; })
-};
-
-}();
-
-var _elm_lang$core$Bitwise$shiftRightZfBy = _elm_lang$core$Native_Bitwise.shiftRightZfBy;
-var _elm_lang$core$Bitwise$shiftRightBy = _elm_lang$core$Native_Bitwise.shiftRightBy;
-var _elm_lang$core$Bitwise$shiftLeftBy = _elm_lang$core$Native_Bitwise.shiftLeftBy;
-var _elm_lang$core$Bitwise$complement = _elm_lang$core$Native_Bitwise.complement;
-var _elm_lang$core$Bitwise$xor = _elm_lang$core$Native_Bitwise.xor;
-var _elm_lang$core$Bitwise$or = _elm_lang$core$Native_Bitwise.or;
-var _elm_lang$core$Bitwise$and = _elm_lang$core$Native_Bitwise.and;
-
 var _elm_lang$svg$Svg$map = _elm_lang$virtual_dom$VirtualDom$map;
 var _elm_lang$svg$Svg$text = _elm_lang$virtual_dom$VirtualDom$text;
 var _elm_lang$svg$Svg$svgNamespace = A2(
@@ -15869,124 +15847,380 @@ var _elm_lang$svg$Svg_Attributes$accumulate = _elm_lang$virtual_dom$VirtualDom$a
 var _elm_lang$svg$Svg_Attributes$accelerate = _elm_lang$virtual_dom$VirtualDom$attribute('accelerate');
 var _elm_lang$svg$Svg_Attributes$accentHeight = _elm_lang$virtual_dom$VirtualDom$attribute('accent-height');
 
-var _user$project$Main$showMask_ = F3(
-	function (idx, num, res) {
-		showMask_:
-		while (true) {
-			var _p0 = idx;
-			if (_p0 === 0) {
-				return res;
-			} else {
-				var _v1 = idx - 1,
-					_v2 = num >> 8,
-					_v3 = A2(
+var _elm_lang$svg$Svg_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
+var _elm_lang$svg$Svg_Events$simpleOn = F2(
+	function (name, msg) {
+		return A2(
+			_elm_lang$svg$Svg_Events$on,
+			name,
+			_elm_lang$core$Json_Decode$succeed(msg));
+	});
+var _elm_lang$svg$Svg_Events$onBegin = _elm_lang$svg$Svg_Events$simpleOn('begin');
+var _elm_lang$svg$Svg_Events$onEnd = _elm_lang$svg$Svg_Events$simpleOn('end');
+var _elm_lang$svg$Svg_Events$onRepeat = _elm_lang$svg$Svg_Events$simpleOn('repeat');
+var _elm_lang$svg$Svg_Events$onAbort = _elm_lang$svg$Svg_Events$simpleOn('abort');
+var _elm_lang$svg$Svg_Events$onError = _elm_lang$svg$Svg_Events$simpleOn('error');
+var _elm_lang$svg$Svg_Events$onResize = _elm_lang$svg$Svg_Events$simpleOn('resize');
+var _elm_lang$svg$Svg_Events$onScroll = _elm_lang$svg$Svg_Events$simpleOn('scroll');
+var _elm_lang$svg$Svg_Events$onLoad = _elm_lang$svg$Svg_Events$simpleOn('load');
+var _elm_lang$svg$Svg_Events$onUnload = _elm_lang$svg$Svg_Events$simpleOn('unload');
+var _elm_lang$svg$Svg_Events$onZoom = _elm_lang$svg$Svg_Events$simpleOn('zoom');
+var _elm_lang$svg$Svg_Events$onActivate = _elm_lang$svg$Svg_Events$simpleOn('activate');
+var _elm_lang$svg$Svg_Events$onClick = _elm_lang$svg$Svg_Events$simpleOn('click');
+var _elm_lang$svg$Svg_Events$onFocusIn = _elm_lang$svg$Svg_Events$simpleOn('focusin');
+var _elm_lang$svg$Svg_Events$onFocusOut = _elm_lang$svg$Svg_Events$simpleOn('focusout');
+var _elm_lang$svg$Svg_Events$onMouseDown = _elm_lang$svg$Svg_Events$simpleOn('mousedown');
+var _elm_lang$svg$Svg_Events$onMouseMove = _elm_lang$svg$Svg_Events$simpleOn('mousemove');
+var _elm_lang$svg$Svg_Events$onMouseOut = _elm_lang$svg$Svg_Events$simpleOn('mouseout');
+var _elm_lang$svg$Svg_Events$onMouseOver = _elm_lang$svg$Svg_Events$simpleOn('mouseover');
+var _elm_lang$svg$Svg_Events$onMouseUp = _elm_lang$svg$Svg_Events$simpleOn('mouseup');
+
+var _user$project$Main$getHSL = F3(
+	function (h, s, l) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'hsl(',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(h),
+				A2(
 					_elm_lang$core$Basics_ops['++'],
-					res,
-					_elm_lang$core$Basics$toString(255 & num));
-				idx = _v1;
-				num = _v2;
-				res = _v3;
-				continue showMask_;
-			}
-		}
+					',',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(s),
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'%,',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								_elm_lang$core$Basics$toString(l),
+								'%)'))))));
 	});
-var _user$project$Main$maskAsString = function (num) {
-	return A3(_user$project$Main$showMask_, 4, num, '');
-};
-var _user$project$Main$maskAsColor_ = F3(
-	function (idx, num, res) {
-		maskAsColor_:
-		while (true) {
-			var _p1 = idx;
-			if (_p1 === 0) {
-				return res;
-			} else {
-				var _v5 = idx - 1,
-					_v6 = num >> 8,
-					_v7 = {
-					ctor: '::',
-					_0: _elm_lang$core$Basics$toString(255 & num),
-					_1: res
-				};
-				idx = _v5;
-				num = _v6;
-				res = _v7;
-				continue maskAsColor_;
-			}
-		}
+var _user$project$Main$getRGB = F3(
+	function (r, g, b) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'rgb(',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(r),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					',',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(g),
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							',',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								_elm_lang$core$Basics$toString(b),
+								')'))))));
 	});
-var _user$project$Main$maskAsColor = function (num) {
-	var cl = A2(
-		_elm_lang$core$List$intersperse,
-		',',
-		A3(
-			_user$project$Main$maskAsColor_,
-			3,
-			num,
-			{ctor: '[]'}));
+var _user$project$Main$maskAsColor = function (mask) {
 	return A2(
 		_elm_lang$core$Basics_ops['++'],
 		'rgb(',
 		A2(
 			_elm_lang$core$Basics_ops['++'],
-			A3(
-				_elm_lang$core$List$foldl,
-				F2(
-					function (x, y) {
-						return A2(_elm_lang$core$Basics_ops['++'], x, y);
-					}),
-				'',
-				cl),
-			')'));
+			_elm_lang$core$Basics$toString(mask.face),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				',',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(mask.hair),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						',',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_elm_lang$core$Basics$toString(mask.eyes),
+							')'))))));
 };
+var _user$project$Main$getColor = F2(
+	function (t, f) {
+		return A3(_user$project$Main$getHSL, 120 + (f * 14), 90, 80);
+	});
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
+var _user$project$Main$renderFeature = F2(
+	function (featureIndex, featureType) {
+		return A2(
+			_elm_lang$svg$Svg$circle,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$cx('120'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$cy('120'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$r(
+							_elm_lang$core$Basics$toString((10 - featureType) * 10)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$fill(
+										A2(_user$project$Main$getColor, featureType, featureIndex)),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			},
+			{ctor: '[]'});
+	});
+var _user$project$Main$renderBorder = A2(
+	_elm_lang$svg$Svg$circle,
+	{
+		ctor: '::',
+		_0: _elm_lang$svg$Svg_Attributes$cx('120'),
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$cy('120'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$r('100'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$fill('#f3f3f3'),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
+	},
+	{ctor: '[]'});
 var _user$project$Main$center = A2(_debois$elm_mdl$Material_Options$css, 'margin', '0 auto');
-var _user$project$Main$model = {featureType: 0, featureIndex: 0, mask: 0, mdl: _debois$elm_mdl$Material$model};
-var _user$project$Main$init = function (_p2) {
+var _user$project$Main$newMask = F2(
+	function (featureIndex, model) {
+		var mask = model.mask;
+		var _p0 = model.featureType;
+		switch (_p0) {
+			case 0:
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{face: featureIndex});
+			case 1:
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{hair: featureIndex});
+			case 2:
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{eyes: featureIndex});
+			case 3:
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{eyebrows: featureIndex});
+			case 4:
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{nose: featureIndex});
+			case 5:
+				return _elm_lang$core$Native_Utils.update(
+					mask,
+					{mouth: featureIndex});
+			default:
+				return mask;
+		}
+	});
+var _user$project$Main$model = {
+	featureType: 0,
+	featureIndex: 0,
+	featureIndexOver: 0,
+	mask: {sex: 0, face: 0, hair: 0, eyes: 0, eyebrows: 0, nose: 0, mouth: 0},
+	mdl: _debois$elm_mdl$Material$model
+};
+var _user$project$Main$init = function (_p1) {
 	return {ctor: '_Tuple2', _0: _user$project$Main$model, _1: _elm_lang$core$Platform_Cmd$none};
 };
-var _user$project$Main$Model = F4(
-	function (a, b, c, d) {
-		return {featureType: a, featureIndex: b, mask: c, mdl: d};
+var _user$project$Main$Mask = F7(
+	function (a, b, c, d, e, f, g) {
+		return {sex: a, face: b, hair: c, eyes: d, eyebrows: e, nose: f, mouth: g};
+	});
+var _user$project$Main$Model = F5(
+	function (a, b, c, d, e) {
+		return {featureType: a, featureIndex: b, featureIndexOver: c, mask: d, mdl: e};
 	});
 var _user$project$Main$Mode = function (a) {
 	return {ctor: 'Mode', _0: a};
 };
-var _user$project$Main$Prev = {ctor: 'Prev'};
-var _user$project$Main$Next = {ctor: 'Next'};
+var _user$project$Main$SelectOver = function (a) {
+	return {ctor: 'SelectOver', _0: a};
+};
+var _user$project$Main$Select = function (a) {
+	return {ctor: 'Select', _0: a};
+};
+var _user$project$Main$renderFeaturePreview = F2(
+	function (featureIndex, model) {
+		return A2(
+			_elm_lang$svg$Svg$svg,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$width('120'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$height('120'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 240 240'),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$svg$Svg$rect,
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$x('10'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$y('10'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$width('220'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$height('220'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$rx('15'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$ry('15'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$strokeWidth('1'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$svg$Svg_Attributes$fill(
+															_elm_lang$core$Native_Utils.eq(model.featureIndexOver, featureIndex) ? '#fff' : '#eee'),
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{ctor: '[]'}),
+				_1: {
+					ctor: '::',
+					_0: A2(_user$project$Main$renderFeature, featureIndex, model.featureType),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$svg$Svg$rect,
+							{
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$x('10'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$y('10'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$width('220'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$height('220'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$rx('15'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$svg$Svg_Attributes$ry('15'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$svg$Svg_Attributes$strokeWidth('1'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$svg$Svg_Attributes$fill('transparent'),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$svg$Svg_Events$onClick(
+																		_user$project$Main$Select(featureIndex)),
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$svg$Svg_Events$onMouseOver(
+																			_user$project$Main$SelectOver(featureIndex)),
+																		_1: {ctor: '[]'}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							{ctor: '[]'}),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+	});
 var _user$project$Main$Mdl = function (a) {
 	return {ctor: 'Mdl', _0: a};
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p3 = msg;
-		switch (_p3.ctor) {
-			case 'Next':
+		var _p2 = msg;
+		switch (_p2.ctor) {
+			case 'Select':
+				var _p3 = _p2._0;
+				var mask_ = A2(_user$project$Main$newMask, _p3, model);
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{featureIndex: model.featureIndex + 10, mask: (model.mask & (~(255 << (model.featureType * 8)))) | ((model.featureIndex + 1) << (model.featureType * 8))}),
+						{featureIndex: _p3, mask: mask_}),
 					{ctor: '[]'});
-			case 'Prev':
+			case 'SelectOver':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{featureIndex: model.featureIndex - 10, mask: (model.mask & (~(255 << (model.featureType * 8)))) | ((model.featureIndex - 1) << (model.featureType * 8))}),
+						{featureIndexOver: _p2._0}),
 					{ctor: '[]'});
 			case 'Mode':
-				var _p4 = _p3._0;
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{featureType: _p4, featureIndex: 255 & (model.mask >> (_p4 * 8))}),
+						{featureType: _p2._0, featureIndex: 0}),
 					{ctor: '[]'});
 			default:
-				return A3(_debois$elm_mdl$Material$update, _user$project$Main$Mdl, _p3._0, model);
+				return A3(_debois$elm_mdl$Material$update, _user$project$Main$Mdl, _p2._0, model);
 		}
 	});
 var _user$project$Main$view = function (model) {
@@ -16013,45 +16247,41 @@ var _user$project$Main$view = function (model) {
 						_elm_lang$svg$Svg$svg,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$width(200),
+							_0: _elm_lang$html$Html_Attributes$width(240),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$height(200),
+								_0: _elm_lang$html$Html_Attributes$height(240),
 								_1: {ctor: '[]'}
 							}
 						},
 						{
 							ctor: '::',
-							_0: A2(
-								_elm_lang$svg$Svg$circle,
-								{
+							_0: _user$project$Main$renderBorder,
+							_1: {
+								ctor: '::',
+								_0: A2(_user$project$Main$renderFeature, model.mask.face, 0),
+								_1: {
 									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$cx('100'),
+									_0: A2(_user$project$Main$renderFeature, model.mask.hair, 1),
 									_1: {
 										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$cy('100'),
+										_0: A2(_user$project$Main$renderFeature, model.mask.eyes, 2),
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$r('80'),
+											_0: A2(_user$project$Main$renderFeature, model.mask.eyebrows, 3),
 											_1: {
 												ctor: '::',
-												_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+												_0: A2(_user$project$Main$renderFeature, model.mask.nose, 4),
 												_1: {
 													ctor: '::',
-													_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
-													_1: {
-														ctor: '::',
-														_0: _elm_lang$svg$Svg_Attributes$fill(
-															_user$project$Main$maskAsColor(model.mask)),
-														_1: {ctor: '[]'}
-													}
+													_0: A2(_user$project$Main$renderFeature, model.mask.mouth, 5),
+													_1: {ctor: '[]'}
 												}
 											}
 										}
 									}
-								},
-								{ctor: '[]'}),
-							_1: {ctor: '[]'}
+								}
+							}
 						}),
 					_1: {ctor: '[]'}
 				}),
@@ -16150,106 +16380,12 @@ var _user$project$Main$view = function (model) {
 							}
 						}
 					},
-					{
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$div,
-							{ctor: '[]'},
-							{
-								ctor: '::',
-								_0: A5(
-									_debois$elm_mdl$Material_Button$render,
-									_user$project$Main$Mdl,
-									{
-										ctor: '::',
-										_0: 2,
-										_1: {
-											ctor: '::',
-											_0: 0,
-											_1: {
-												ctor: '::',
-												_0: 0,
-												_1: {
-													ctor: '::',
-													_0: 1,
-													_1: {ctor: '[]'}
-												}
-											}
-										}
-									},
-									model.mdl,
-									{
-										ctor: '::',
-										_0: _debois$elm_mdl$Material_Button$ripple,
-										_1: {
-											ctor: '::',
-											_0: _debois$elm_mdl$Material_Button$colored,
-											_1: {
-												ctor: '::',
-												_0: _debois$elm_mdl$Material_Button$raised,
-												_1: {
-													ctor: '::',
-													_0: _debois$elm_mdl$Material_Options$onClick(_user$project$Main$Prev),
-													_1: {ctor: '[]'}
-												}
-											}
-										}
-									},
-									{
-										ctor: '::',
-										_0: _elm_lang$svg$Svg$text('Previous'),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A5(
-										_debois$elm_mdl$Material_Button$render,
-										_user$project$Main$Mdl,
-										{
-											ctor: '::',
-											_0: 3,
-											_1: {
-												ctor: '::',
-												_0: 0,
-												_1: {
-													ctor: '::',
-													_0: 0,
-													_1: {
-														ctor: '::',
-														_0: 1,
-														_1: {ctor: '[]'}
-													}
-												}
-											}
-										},
-										model.mdl,
-										{
-											ctor: '::',
-											_0: _debois$elm_mdl$Material_Button$ripple,
-											_1: {
-												ctor: '::',
-												_0: _debois$elm_mdl$Material_Button$colored,
-												_1: {
-													ctor: '::',
-													_0: _debois$elm_mdl$Material_Button$raised,
-													_1: {
-														ctor: '::',
-														_0: _debois$elm_mdl$Material_Options$onClick(_user$project$Main$Next),
-														_1: {ctor: '[]'}
-													}
-												}
-											}
-										},
-										{
-											ctor: '::',
-											_0: _elm_lang$svg$Svg$text('Next'),
-											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
-								}
-							}),
-						_1: {ctor: '[]'}
-					}),
+					A2(
+						_elm_lang$core$List$map,
+						function (a) {
+							return A2(_user$project$Main$renderFeaturePreview, a, model);
+						},
+						A2(_elm_lang$core$List$range, 0, 20))),
 				_1: {ctor: '[]'}
 			}
 		});

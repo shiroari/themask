@@ -1,11 +1,12 @@
-import Html exposing (Html, div)
-import Html.Events exposing (onClick)
-import Bitwise exposing (..)
-
 import Platform.Cmd exposing (Cmd, none)
-import Svg exposing (..)
-import Svg.Attributes
+
+import Html exposing (Html, div)
+import Html.Events
 import Html.Attributes 
+
+import Svg exposing (..)
+import Svg.Events
+import Svg.Attributes exposing (..)
 
 import Material.Card as Card 
 import Material.Button as Button 
@@ -20,39 +21,75 @@ import Material.Helpers exposing (map1st, map2nd)
 
 -- MODEL
 
+type alias Mask = {
+  sex: Int,
+  face: Int,
+  hair: Int,
+  eyes: Int,
+  eyebrows: Int,
+  nose: Int,
+  mouth: Int  
+}
+
 type alias Model = {
   featureType: Int,
   featureIndex: Int,
-  mask: Int,
+  featureIndexOver: Int,
+  mask: Mask,
   mdl : Material.Model
 }
 
 model : Model
-model = { featureType=0, featureIndex=0, mask=0, mdl=Material.model }
+model = { 
+    featureType = 0,
+    featureIndex = 0,
+    featureIndexOver = 0,
+    mask = { 
+      sex = 0, 
+      face = 0, 
+      hair = 0, 
+      eyes = 0, 
+      eyebrows = 0,
+      nose = 0,
+      mouth = 0
+      },
+    mdl = Material.model 
+  }
 
 -- UPDATE
 
 type Msg
   = Mdl (Material.Msg Msg)
-  | Next 
-  | Prev 
+  | Select (Int)
+  | SelectOver (Int)
   | Mode (Int)
+
+newMask: Int -> Model -> Mask
+newMask featureIndex model =
+  let 
+    mask = model.mask 
+  in
+  case model.featureType of
+    0 -> { mask | face = featureIndex }
+    1 -> { mask | hair = featureIndex }
+    2 -> { mask | eyes = featureIndex }
+    3 -> { mask | eyebrows = featureIndex }
+    4 -> { mask | nose = featureIndex }
+    5 -> { mask | mouth = featureIndex }
+    _ -> mask
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
-    Next ->
-      { model | featureIndex = model.featureIndex + 10,
-        mask = or (and model.mask (complement (shiftLeftBy (model.featureType*8) 255))) (shiftLeftBy (model.featureType*8) (model.featureIndex + 1)) 
-        } ! [] 
-    Prev ->
-      { model | featureIndex = model.featureIndex - 10,
-        mask = or (and model.mask (complement (shiftLeftBy (model.featureType*8) 255))) (shiftLeftBy (model.featureType*8) (model.featureIndex - 1)) 
-        } ! [] 
+    Select featureIndex_ ->
+      let 
+        mask_ = newMask featureIndex_ model 
+      in
+      { model | featureIndex = featureIndex_, mask = mask_ } ! []
+    SelectOver featureIndex_ -> 
+      { model | featureIndexOver = featureIndex_ } ! []
     Mode typeIndex ->
-      { model | featureType = typeIndex, 
-        featureIndex = and 255 (shiftRightBy (typeIndex*8) model.mask)
-        } ! [] 
+      { model | featureType = typeIndex, featureIndex = 0 } ! []
     Mdl msg_ ->
       Material.update Mdl msg_ model
 
@@ -62,21 +99,58 @@ center : Options.Property a b
 center = 
   css "margin" "0 auto"
 
+renderBorder : Html Msg
+renderBorder =
+  Svg.circle [
+      cx "120"
+    , cy "120"
+    , r "100" 
+    , strokeWidth "4"
+    , stroke "#666"
+    , fill "#f3f3f3"][]
+
+renderFeature : Int -> Int -> Html Msg
+renderFeature featureIndex featureType =
+  Svg.circle [
+      cx "120"
+    , cy "120"
+    , r (toString ((10 - featureType) * 10))
+    , strokeWidth "4"
+    , stroke "#666"
+    , fill (getColor featureType featureIndex)][]
+
+renderFeaturePreview : Int -> Model -> Html Msg
+renderFeaturePreview featureIndex model =
+  Svg.svg [width "120", height "120", viewBox "0 0 240 240"]
+      [ rect [ 
+          x "10", y "10", width "220", height "220", rx "15", ry "15",
+          strokeWidth "1",
+          stroke "#666",
+          fill (if model.featureIndexOver == featureIndex then "#fff" else "#eee")] []
+      , renderFeature featureIndex model.featureType
+      , rect [ 
+          x "10", y "10", width "220", height "220", rx "15", ry "15",
+          strokeWidth "1",
+          stroke "#666",
+          fill "transparent",
+          Svg.Events.onClick (Select featureIndex),
+          Svg.Events.onMouseOver (SelectOver featureIndex)] []
+      ]
+
 view : Model -> Html Msg
 view model =
   div []
     [ div [ 
         Html.Attributes.style [("text-align","center")]
       ]
-      [ Svg.svg [Html.Attributes.width 200, Html.Attributes.height 200]
-        [
-          Svg.circle [
-            Svg.Attributes.cx "100"
-          , Svg.Attributes.cy "100"
-          , Svg.Attributes.r "80" 
-          , Svg.Attributes.strokeWidth "4"
-          , Svg.Attributes.stroke "#666"
-          , Svg.Attributes.fill (maskAsColor model.mask)][]
+      [ Svg.svg [Html.Attributes.width 240, Html.Attributes.height 240]
+        [ renderBorder
+        , renderFeature model.mask.face 0
+        , renderFeature model.mask.hair 1      
+        , renderFeature model.mask.eyes 2
+        , renderFeature model.mask.eyebrows 3
+        , renderFeature model.mask.nose 4
+        , renderFeature model.mask.mouth 5
         ]
       ]
     , Tabs.render Mdl [5,2] model.mdl
@@ -91,25 +165,10 @@ view model =
         , Tabs.label [] [ text "Nose" ]
         , Tabs.label [] [ text "Mouth" ]
         ]
-        [ div [][Button.render Mdl [2, 0, 0, 1] model.mdl
-                [ Button.ripple
-                , Button.colored
-                , Button.raised
-                , Options.onClick Prev
-                ]
-                [ text "Previous" ]
-              , Button.render Mdl [3, 0, 0, 1] model.mdl
-                [ Button.ripple
-                , Button.colored
-                , Button.raised
-                , Options.onClick Next
-                ]
-                [ text "Next" ]
-            ]
-        ]
+        (List.map (\a -> (renderFeaturePreview a model)) (List.range 0 20))
     ]
   
---main : Program Never Model Msg
+main : Program Never Model Msg
 main =
   Html.program
     { init = init "todo"
@@ -128,24 +187,18 @@ subscriptions model =
   
 -- UTILS
 
-maskAsColor : Int -> String
-maskAsColor num = 
-  let cl = List.intersperse "," (maskAsColor_ 3 num [])
-    in
-  "rgb(" ++ ( List.foldl (++) "" cl ) ++ ")"
+getColor : Int -> Int ->String
+getColor t f = 
+  getHSL (120+f*14) 90 80
 
-maskAsColor_ : Int -> Int -> List String -> List String
-maskAsColor_ idx num res = 
-  case idx of 
-    0 -> res
-    _ -> maskAsColor_ (idx - 1) (shiftRightBy 8 num) ((toString (and 255 num) :: res))
+maskAsColor : Mask -> String
+maskAsColor mask = 
+  "rgb(" ++ toString mask.face ++ "," ++ toString mask.hair ++ "," ++ toString mask.eyes ++ ")"
 
+getRGB : Int -> Int -> Int -> String
+getRGB r g b = 
+  "rgb(" ++ toString r ++ "," ++ toString g ++ "," ++ toString b ++ ")"
 
-maskAsString : Int -> String
-maskAsString num = showMask_ 4 num ""
-
-showMask_ : Int -> Int -> String -> String
-showMask_ idx num res = 
-  case idx of 
-    0 -> res
-    _ -> showMask_ (idx - 1) (shiftRightBy 8 num) (res ++ toString (and 255 num))
+getHSL : Int -> Int -> Int -> String
+getHSL h s l = 
+  "hsl(" ++ toString h ++ "," ++ toString s ++ "%," ++ toString l ++ "%)"  
