@@ -2,6 +2,8 @@
 
 The Mask is a simple avatar maker engine based on scalable vector graphics (SVG). 
 
+[Online Demo](https://shiroari.github.io/themask/)
+
 ## How to build
 
 ```
