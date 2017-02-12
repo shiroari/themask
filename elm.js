@@ -14883,629 +14883,6 @@ var _debois$elm_mdl$Material$Model = F8(
 		return {button: a, textfield: b, menu: c, snackbar: d, layout: e, toggles: f, tooltip: g, tabs: h};
 	});
 
-var _debois$elm_mdl$Material_Card$stopClick = _debois$elm_mdl$Material_Options_Internal$attribute(
-	A2(_elm_lang$html$Html_Attributes$attribute, 'onclick', 'var event = arguments[0] || window.event; event.stopPropagation();'));
-var _debois$elm_mdl$Material_Card$block = function (block) {
-	var _p0 = block;
-	switch (_p0.ctor) {
-		case 'Title':
-			return A2(
-				_debois$elm_mdl$Material_Options$div,
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-card__title'),
-					_1: _p0._0
-				},
-				_p0._1);
-		case 'Media':
-			return A2(
-				_debois$elm_mdl$Material_Options$div,
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-card__media'),
-					_1: _p0._0
-				},
-				_p0._1);
-		case 'SupportingText':
-			return A2(
-				_debois$elm_mdl$Material_Options$div,
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-card__supporting-text'),
-					_1: _p0._0
-				},
-				_p0._1);
-		case 'Actions':
-			return A2(
-				_debois$elm_mdl$Material_Options$div,
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-card__actions'),
-					_1: {ctor: '::', _0: _debois$elm_mdl$Material_Card$stopClick, _1: _p0._0}
-				},
-				_p0._1);
-		default:
-			return A2(
-				_debois$elm_mdl$Material_Options$div,
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-card__menu'),
-					_1: {ctor: '::', _0: _debois$elm_mdl$Material_Card$stopClick, _1: _p0._0}
-				},
-				_p0._1);
-	}
-};
-var _debois$elm_mdl$Material_Card$view = F2(
-	function (styling, views) {
-		return A2(
-			_debois$elm_mdl$Material_Options$div,
-			{
-				ctor: '::',
-				_0: _debois$elm_mdl$Material_Options$many(styling),
-				_1: {
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-card'),
-					_1: {
-						ctor: '::',
-						_0: A2(_debois$elm_mdl$Material_Options$css, 'min-height', '0px'),
-						_1: {ctor: '[]'}
-					}
-				}
-			},
-			A2(_elm_lang$core$List$map, _debois$elm_mdl$Material_Card$block, views));
-	});
-var _debois$elm_mdl$Material_Card$subhead = function (styling) {
-	return _debois$elm_mdl$Material_Options$span(
-		{
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_Options$cs('mdl-card__subtitle-text'),
-			_1: {
-				ctor: '::',
-				_0: A2(_debois$elm_mdl$Material_Options$css, 'padding-top', '8px'),
-				_1: styling
-			}
-		});
-};
-var _debois$elm_mdl$Material_Card$head = function (styling) {
-	return A2(
-		_debois$elm_mdl$Material_Options$styled,
-		_elm_lang$html$Html$h1,
-		{
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_Options$cs('mdl-card__title-text'),
-			_1: {
-				ctor: '::',
-				_0: A2(_debois$elm_mdl$Material_Options$css, 'align-self', 'flex-start'),
-				_1: styling
-			}
-		});
-};
-var _debois$elm_mdl$Material_Card$expand = _debois$elm_mdl$Material_Options$cs('mdl-card--expand');
-var _debois$elm_mdl$Material_Card$border = _debois$elm_mdl$Material_Options$cs('mdl-card--border');
-var _debois$elm_mdl$Material_Card$Actions = F2(
-	function (a, b) {
-		return {ctor: 'Actions', _0: a, _1: b};
-	});
-var _debois$elm_mdl$Material_Card$actions = _debois$elm_mdl$Material_Card$Actions;
-var _debois$elm_mdl$Material_Card$SupportingText = F2(
-	function (a, b) {
-		return {ctor: 'SupportingText', _0: a, _1: b};
-	});
-var _debois$elm_mdl$Material_Card$text = _debois$elm_mdl$Material_Card$SupportingText;
-var _debois$elm_mdl$Material_Card$Media = F2(
-	function (a, b) {
-		return {ctor: 'Media', _0: a, _1: b};
-	});
-var _debois$elm_mdl$Material_Card$media = _debois$elm_mdl$Material_Card$Media;
-var _debois$elm_mdl$Material_Card$Menu = F2(
-	function (a, b) {
-		return {ctor: 'Menu', _0: a, _1: b};
-	});
-var _debois$elm_mdl$Material_Card$menu = F2(
-	function (styling, block) {
-		return A2(_debois$elm_mdl$Material_Card$Menu, styling, block);
-	});
-var _debois$elm_mdl$Material_Card$Title = F2(
-	function (a, b) {
-		return {ctor: 'Title', _0: a, _1: b};
-	});
-var _debois$elm_mdl$Material_Card$title = F2(
-	function (styling, block) {
-		return A2(
-			_debois$elm_mdl$Material_Card$Title,
-			{
-				ctor: '::',
-				_0: _debois$elm_mdl$Material_Options$many(styling),
-				_1: {
-					ctor: '::',
-					_0: A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'flex-end'),
-					_1: {
-						ctor: '::',
-						_0: A2(_debois$elm_mdl$Material_Options$css, 'flex-direction', 'column'),
-						_1: {
-							ctor: '::',
-							_0: A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'flex-start'),
-							_1: {ctor: '[]'}
-						}
-					}
-				}
-			},
-			block);
-	});
-
-var _debois$elm_mdl$Material_Color$text = function (_p0) {
-	var _p1 = _p0;
-	return _debois$elm_mdl$Material_Options$cs(
-		A2(_elm_lang$core$Basics_ops['++'], 'mdl-color-text--', _p1._0));
-};
-var _debois$elm_mdl$Material_Color$background = function (_p2) {
-	var _p3 = _p2;
-	return _debois$elm_mdl$Material_Options$cs(
-		A2(_elm_lang$core$Basics_ops['++'], 'mdl-color--', _p3._0));
-};
-var _debois$elm_mdl$Material_Color$shadeName = function (shade) {
-	var _p4 = shade;
-	switch (_p4.ctor) {
-		case 'S50':
-			return '50';
-		case 'S100':
-			return '100';
-		case 'S200':
-			return '200';
-		case 'S300':
-			return '300';
-		case 'S400':
-			return '400';
-		case 'S500':
-			return '500';
-		case 'S600':
-			return '600';
-		case 'S700':
-			return '700';
-		case 'S800':
-			return '800';
-		case 'S900':
-			return '900';
-		case 'A100':
-			return 'A100';
-		case 'A200':
-			return 'A200';
-		case 'A400':
-			return 'A400';
-		default:
-			return 'A700';
-	}
-};
-var _debois$elm_mdl$Material_Color$hueName = function (color) {
-	var _p5 = color;
-	switch (_p5.ctor) {
-		case 'Indigo':
-			return 'indigo';
-		case 'Blue':
-			return 'blue';
-		case 'LightBlue':
-			return 'light-blue';
-		case 'Cyan':
-			return 'cyan';
-		case 'Teal':
-			return 'teal';
-		case 'Green':
-			return 'green';
-		case 'LightGreen':
-			return 'light-green';
-		case 'Lime':
-			return 'lime';
-		case 'Yellow':
-			return 'yellow';
-		case 'Amber':
-			return 'amber';
-		case 'Orange':
-			return 'orange';
-		case 'Brown':
-			return 'brown';
-		case 'BlueGrey':
-			return 'blue-grey';
-		case 'Grey':
-			return 'grey';
-		case 'DeepOrange':
-			return 'deep-orange';
-		case 'Red':
-			return 'red';
-		case 'Pink':
-			return 'pink';
-		case 'Purple':
-			return 'purple';
-		default:
-			return 'deep-purple';
-	}
-};
-var _debois$elm_mdl$Material_Color$scheme = F2(
-	function (primary, accent) {
-		var q = _elm_lang$core$String$map(
-			function (x) {
-				return _elm_lang$core$Native_Utils.eq(
-					x,
-					_elm_lang$core$Native_Utils.chr('-')) ? _elm_lang$core$Native_Utils.chr('_') : x;
-			});
-		var cssFile = function () {
-			var _p6 = accent;
-			switch (_p6.ctor) {
-				case 'Grey':
-					return '';
-				case 'Brown':
-					return '';
-				case 'BlueGrey':
-					return '';
-				default:
-					return A2(
-						_elm_lang$core$Basics_ops['++'],
-						'.',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							q(
-								_debois$elm_mdl$Material_Color$hueName(primary)),
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								'-',
-								q(
-									_debois$elm_mdl$Material_Color$hueName(accent)))));
-			}
-		}();
-		return A2(
-			_elm_lang$core$Basics_ops['++'],
-			'material',
-			A2(_elm_lang$core$Basics_ops['++'], cssFile, '.min.css'));
-	});
-var _debois$elm_mdl$Material_Color$DeepPurple = {ctor: 'DeepPurple'};
-var _debois$elm_mdl$Material_Color$Purple = {ctor: 'Purple'};
-var _debois$elm_mdl$Material_Color$Pink = {ctor: 'Pink'};
-var _debois$elm_mdl$Material_Color$Red = {ctor: 'Red'};
-var _debois$elm_mdl$Material_Color$DeepOrange = {ctor: 'DeepOrange'};
-var _debois$elm_mdl$Material_Color$Grey = {ctor: 'Grey'};
-var _debois$elm_mdl$Material_Color$BlueGrey = {ctor: 'BlueGrey'};
-var _debois$elm_mdl$Material_Color$Brown = {ctor: 'Brown'};
-var _debois$elm_mdl$Material_Color$Orange = {ctor: 'Orange'};
-var _debois$elm_mdl$Material_Color$Amber = {ctor: 'Amber'};
-var _debois$elm_mdl$Material_Color$Yellow = {ctor: 'Yellow'};
-var _debois$elm_mdl$Material_Color$Lime = {ctor: 'Lime'};
-var _debois$elm_mdl$Material_Color$LightGreen = {ctor: 'LightGreen'};
-var _debois$elm_mdl$Material_Color$Green = {ctor: 'Green'};
-var _debois$elm_mdl$Material_Color$Teal = {ctor: 'Teal'};
-var _debois$elm_mdl$Material_Color$Cyan = {ctor: 'Cyan'};
-var _debois$elm_mdl$Material_Color$LightBlue = {ctor: 'LightBlue'};
-var _debois$elm_mdl$Material_Color$Blue = {ctor: 'Blue'};
-var _debois$elm_mdl$Material_Color$Indigo = {ctor: 'Indigo'};
-var _debois$elm_mdl$Material_Color$hues = _elm_lang$core$Array$fromList(
-	{
-		ctor: '::',
-		_0: _debois$elm_mdl$Material_Color$Indigo,
-		_1: {
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_Color$Blue,
-			_1: {
-				ctor: '::',
-				_0: _debois$elm_mdl$Material_Color$LightBlue,
-				_1: {
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Color$Cyan,
-					_1: {
-						ctor: '::',
-						_0: _debois$elm_mdl$Material_Color$Teal,
-						_1: {
-							ctor: '::',
-							_0: _debois$elm_mdl$Material_Color$Green,
-							_1: {
-								ctor: '::',
-								_0: _debois$elm_mdl$Material_Color$LightGreen,
-								_1: {
-									ctor: '::',
-									_0: _debois$elm_mdl$Material_Color$Lime,
-									_1: {
-										ctor: '::',
-										_0: _debois$elm_mdl$Material_Color$Yellow,
-										_1: {
-											ctor: '::',
-											_0: _debois$elm_mdl$Material_Color$Amber,
-											_1: {
-												ctor: '::',
-												_0: _debois$elm_mdl$Material_Color$Orange,
-												_1: {
-													ctor: '::',
-													_0: _debois$elm_mdl$Material_Color$Brown,
-													_1: {
-														ctor: '::',
-														_0: _debois$elm_mdl$Material_Color$BlueGrey,
-														_1: {
-															ctor: '::',
-															_0: _debois$elm_mdl$Material_Color$Grey,
-															_1: {
-																ctor: '::',
-																_0: _debois$elm_mdl$Material_Color$DeepOrange,
-																_1: {
-																	ctor: '::',
-																	_0: _debois$elm_mdl$Material_Color$Red,
-																	_1: {
-																		ctor: '::',
-																		_0: _debois$elm_mdl$Material_Color$Pink,
-																		_1: {
-																			ctor: '::',
-																			_0: _debois$elm_mdl$Material_Color$Purple,
-																			_1: {
-																				ctor: '::',
-																				_0: _debois$elm_mdl$Material_Color$DeepPurple,
-																				_1: {ctor: '[]'}
-																			}
-																		}
-																	}
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _debois$elm_mdl$Material_Color$accentHues = _elm_lang$core$Array$fromList(
-	{
-		ctor: '::',
-		_0: _debois$elm_mdl$Material_Color$Indigo,
-		_1: {
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_Color$Blue,
-			_1: {
-				ctor: '::',
-				_0: _debois$elm_mdl$Material_Color$LightBlue,
-				_1: {
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Color$Cyan,
-					_1: {
-						ctor: '::',
-						_0: _debois$elm_mdl$Material_Color$Teal,
-						_1: {
-							ctor: '::',
-							_0: _debois$elm_mdl$Material_Color$Green,
-							_1: {
-								ctor: '::',
-								_0: _debois$elm_mdl$Material_Color$LightGreen,
-								_1: {
-									ctor: '::',
-									_0: _debois$elm_mdl$Material_Color$Lime,
-									_1: {
-										ctor: '::',
-										_0: _debois$elm_mdl$Material_Color$Yellow,
-										_1: {
-											ctor: '::',
-											_0: _debois$elm_mdl$Material_Color$Amber,
-											_1: {
-												ctor: '::',
-												_0: _debois$elm_mdl$Material_Color$Orange,
-												_1: {
-													ctor: '::',
-													_0: _debois$elm_mdl$Material_Color$DeepOrange,
-													_1: {
-														ctor: '::',
-														_0: _debois$elm_mdl$Material_Color$Red,
-														_1: {
-															ctor: '::',
-															_0: _debois$elm_mdl$Material_Color$Pink,
-															_1: {
-																ctor: '::',
-																_0: _debois$elm_mdl$Material_Color$Purple,
-																_1: {
-																	ctor: '::',
-																	_0: _debois$elm_mdl$Material_Color$DeepPurple,
-																	_1: {ctor: '[]'}
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _debois$elm_mdl$Material_Color$A700 = {ctor: 'A700'};
-var _debois$elm_mdl$Material_Color$A400 = {ctor: 'A400'};
-var _debois$elm_mdl$Material_Color$A200 = {ctor: 'A200'};
-var _debois$elm_mdl$Material_Color$A100 = {ctor: 'A100'};
-var _debois$elm_mdl$Material_Color$S900 = {ctor: 'S900'};
-var _debois$elm_mdl$Material_Color$S800 = {ctor: 'S800'};
-var _debois$elm_mdl$Material_Color$S700 = {ctor: 'S700'};
-var _debois$elm_mdl$Material_Color$S600 = {ctor: 'S600'};
-var _debois$elm_mdl$Material_Color$S500 = {ctor: 'S500'};
-var _debois$elm_mdl$Material_Color$S400 = {ctor: 'S400'};
-var _debois$elm_mdl$Material_Color$S300 = {ctor: 'S300'};
-var _debois$elm_mdl$Material_Color$S200 = {ctor: 'S200'};
-var _debois$elm_mdl$Material_Color$S100 = {ctor: 'S100'};
-var _debois$elm_mdl$Material_Color$S50 = {ctor: 'S50'};
-var _debois$elm_mdl$Material_Color$shades = _elm_lang$core$Array$fromList(
-	{
-		ctor: '::',
-		_0: _debois$elm_mdl$Material_Color$S50,
-		_1: {
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_Color$S100,
-			_1: {
-				ctor: '::',
-				_0: _debois$elm_mdl$Material_Color$S200,
-				_1: {
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Color$S300,
-					_1: {
-						ctor: '::',
-						_0: _debois$elm_mdl$Material_Color$S400,
-						_1: {
-							ctor: '::',
-							_0: _debois$elm_mdl$Material_Color$S500,
-							_1: {
-								ctor: '::',
-								_0: _debois$elm_mdl$Material_Color$S600,
-								_1: {
-									ctor: '::',
-									_0: _debois$elm_mdl$Material_Color$S700,
-									_1: {
-										ctor: '::',
-										_0: _debois$elm_mdl$Material_Color$S800,
-										_1: {
-											ctor: '::',
-											_0: _debois$elm_mdl$Material_Color$S900,
-											_1: {
-												ctor: '::',
-												_0: _debois$elm_mdl$Material_Color$A100,
-												_1: {
-													ctor: '::',
-													_0: _debois$elm_mdl$Material_Color$A200,
-													_1: {
-														ctor: '::',
-														_0: _debois$elm_mdl$Material_Color$A400,
-														_1: {
-															ctor: '::',
-															_0: _debois$elm_mdl$Material_Color$A700,
-															_1: {ctor: '[]'}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _debois$elm_mdl$Material_Color$C = function (a) {
-	return {ctor: 'C', _0: a};
-};
-var _debois$elm_mdl$Material_Color$color = F2(
-	function (hue, shade) {
-		return _debois$elm_mdl$Material_Color$C(
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				_debois$elm_mdl$Material_Color$hueName(hue),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'-',
-					_debois$elm_mdl$Material_Color$shadeName(shade))));
-	});
-var _debois$elm_mdl$Material_Color$white = _debois$elm_mdl$Material_Color$C('white');
-var _debois$elm_mdl$Material_Color$black = _debois$elm_mdl$Material_Color$C('black');
-var _debois$elm_mdl$Material_Color$primary = _debois$elm_mdl$Material_Color$C('primary');
-var _debois$elm_mdl$Material_Color$primaryDark = _debois$elm_mdl$Material_Color$C('primary-dark');
-var _debois$elm_mdl$Material_Color$primaryContrast = _debois$elm_mdl$Material_Color$C('primary-contrast');
-var _debois$elm_mdl$Material_Color$accent = _debois$elm_mdl$Material_Color$C('accent');
-var _debois$elm_mdl$Material_Color$accentContrast = _debois$elm_mdl$Material_Color$C('accent-contrast');
-
-var _debois$elm_mdl$Material_Elevation$transition = function (duration) {
-	return A2(
-		_debois$elm_mdl$Material_Options$css,
-		'transition',
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			'box-shadow ',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				_elm_lang$core$Basics$toString(duration),
-				'ms ease-in-out 0s')));
-};
-var _debois$elm_mdl$Material_Elevation$e0 = _debois$elm_mdl$Material_Options$nop;
-var _debois$elm_mdl$Material_Elevation$shadow = function (z) {
-	return _debois$elm_mdl$Material_Options$cs(
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			'mdl-shadow--',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				_elm_lang$core$Basics$toString(z),
-				'dp')));
-};
-var _debois$elm_mdl$Material_Elevation$e2 = _debois$elm_mdl$Material_Elevation$shadow(2);
-var _debois$elm_mdl$Material_Elevation$e3 = _debois$elm_mdl$Material_Elevation$shadow(3);
-var _debois$elm_mdl$Material_Elevation$e4 = _debois$elm_mdl$Material_Elevation$shadow(4);
-var _debois$elm_mdl$Material_Elevation$e6 = _debois$elm_mdl$Material_Elevation$shadow(6);
-var _debois$elm_mdl$Material_Elevation$e8 = _debois$elm_mdl$Material_Elevation$shadow(8);
-var _debois$elm_mdl$Material_Elevation$e16 = _debois$elm_mdl$Material_Elevation$shadow(16);
-var _debois$elm_mdl$Material_Elevation$e24 = _debois$elm_mdl$Material_Elevation$shadow(24);
-var _debois$elm_mdl$Material_Elevation$elevations = _elm_lang$core$Array$fromList(
-	{
-		ctor: '::',
-		_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e0, _1: 0},
-		_1: {
-			ctor: '::',
-			_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e2, _1: 2},
-			_1: {
-				ctor: '::',
-				_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e3, _1: 3},
-				_1: {
-					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e4, _1: 4},
-					_1: {
-						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e6, _1: 6},
-						_1: {
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e8, _1: 8},
-							_1: {
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e16, _1: 16},
-								_1: {
-									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: _debois$elm_mdl$Material_Elevation$e24, _1: 24},
-									_1: {ctor: '[]'}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-
-var _debois$elm_mdl$Material_Typography$uppercase = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-uppercase');
-var _debois$elm_mdl$Material_Typography$lowercase = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-lowercase');
-var _debois$elm_mdl$Material_Typography$capitalize = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-capitalize');
-var _debois$elm_mdl$Material_Typography$justify = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-justify');
-var _debois$elm_mdl$Material_Typography$right = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-right');
-var _debois$elm_mdl$Material_Typography$left = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-left');
-var _debois$elm_mdl$Material_Typography$center = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-center');
-var _debois$elm_mdl$Material_Typography$tableStriped = _debois$elm_mdl$Material_Options$cs('mdl-typography--table-striped');
-var _debois$elm_mdl$Material_Typography$nowrap = _debois$elm_mdl$Material_Options$cs('mdl-typography--text-nowrap');
-var _debois$elm_mdl$Material_Typography$contrast = function (x) {
-	return A2(
-		_debois$elm_mdl$Material_Options$css,
-		'opacity',
-		_elm_lang$core$Basics$toString(x));
-};
-var _debois$elm_mdl$Material_Typography$menu = _debois$elm_mdl$Material_Options$cs('mdl-typography--menu-color-contrast');
-var _debois$elm_mdl$Material_Typography$button = _debois$elm_mdl$Material_Options$cs('mdl-typography--button-color-contrast');
-var _debois$elm_mdl$Material_Typography$caption = _debois$elm_mdl$Material_Options$cs('mdl-typography--caption-force-preferred-font-color-contrast');
-var _debois$elm_mdl$Material_Typography$body2 = _debois$elm_mdl$Material_Options$cs('mdl-typography--body-2-force-preferred-font-color-contrast');
-var _debois$elm_mdl$Material_Typography$body1 = _debois$elm_mdl$Material_Options$cs('mdl-typography--body-1-force-preferred-font-color-contrast');
-var _debois$elm_mdl$Material_Typography$subhead = _debois$elm_mdl$Material_Options$cs('mdl-typography--subhead-color-contrast');
-var _debois$elm_mdl$Material_Typography$title = _debois$elm_mdl$Material_Options$cs('mdl-typography--title-color-contrast');
-var _debois$elm_mdl$Material_Typography$headline = _debois$elm_mdl$Material_Options$cs('mdl-typography--headline-color-contrast');
-var _debois$elm_mdl$Material_Typography$display4 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-4-color-contrast');
-var _debois$elm_mdl$Material_Typography$display3 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-3-color-contrast');
-var _debois$elm_mdl$Material_Typography$display2 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-2-color-contrast');
-var _debois$elm_mdl$Material_Typography$display1 = _debois$elm_mdl$Material_Options$cs('mdl-typography--display-1-color-contrast');
-
 var _elm_lang$svg$Svg$map = _elm_lang$virtual_dom$VirtualDom$map;
 var _elm_lang$svg$Svg$text = _elm_lang$virtual_dom$VirtualDom$text;
 var _elm_lang$svg$Svg$svgNamespace = A2(
@@ -15879,7 +15256,7 @@ var _user$project$Main$getHSL = F3(
 	function (h, s, l) {
 		return A2(
 			_elm_lang$core$Basics_ops['++'],
-			'hsl(',
+			'hsla(',
 			A2(
 				_elm_lang$core$Basics_ops['++'],
 				_elm_lang$core$Basics$toString(h),
@@ -15895,7 +15272,7 @@ var _user$project$Main$getHSL = F3(
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								_elm_lang$core$Basics$toString(l),
-								'%)'))))));
+								'%,1.0)'))))));
 	});
 var _user$project$Main$getRGB = F3(
 	function (r, g, b) {
@@ -15947,39 +15324,6 @@ var _user$project$Main$getColor = F2(
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$renderFeature = F2(
-	function (featureIndex, featureType) {
-		return A2(
-			_elm_lang$svg$Svg$circle,
-			{
-				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$cx('120'),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$cy('120'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$r(
-							_elm_lang$core$Basics$toString((10 - featureType) * 10)),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$fill(
-										A2(_user$project$Main$getColor, featureType, featureIndex)),
-									_1: {ctor: '[]'}
-								}
-							}
-						}
-					}
-				}
-			},
-			{ctor: '[]'});
-	});
 var _user$project$Main$renderBorder = A2(
 	_elm_lang$svg$Svg$circle,
 	{
@@ -16008,7 +15352,6 @@ var _user$project$Main$renderBorder = A2(
 		}
 	},
 	{ctor: '[]'});
-var _user$project$Main$center = A2(_debois$elm_mdl$Material_Options$css, 'margin', '0 auto');
 var _user$project$Main$newMask = F2(
 	function (featureIndex, model) {
 		var mask = model.mask;
@@ -16045,21 +15388,484 @@ var _user$project$Main$newMask = F2(
 var _user$project$Main$model = {
 	featureType: 0,
 	featureIndex: 0,
-	featureIndexOver: 0,
-	mask: {sex: 0, face: 0, hair: 0, eyes: 0, eyebrows: 0, nose: 0, mouth: 0},
+	featureIndexOver: -1,
+	mask: {sex: 0, face: 19, hair: 9, eyes: 4, eyebrows: 0, nose: 0, mouth: 0},
 	mdl: _debois$elm_mdl$Material$model
 };
 var _user$project$Main$init = function (_p1) {
 	return {ctor: '_Tuple2', _0: _user$project$Main$model, _1: _elm_lang$core$Platform_Cmd$none};
 };
+var _user$project$Main$palette = function (x) {
+	var _p2 = x;
+	switch (_p2.ctor) {
+		case 'Sex':
+			return {name: 'Sex', size: 2};
+		case 'Face':
+			return {name: 'Face', size: 20};
+		case 'Hair':
+			return {name: 'Hair', size: 18};
+		case 'Eyes':
+			return {name: 'Eyes', size: 12};
+		case 'Eyebrows':
+			return {name: 'Eyebrow', size: 20};
+		case 'Nose':
+			return {name: 'Nose', size: 20};
+		case 'Mouth':
+			return {name: 'Mouth', size: 12};
+		default:
+			return {name: '', size: 0};
+	}
+};
 var _user$project$Main$Mask = F7(
 	function (a, b, c, d, e, f, g) {
 		return {sex: a, face: b, hair: c, eyes: d, eyebrows: e, nose: f, mouth: g};
+	});
+var _user$project$Main$Palette = F2(
+	function (a, b) {
+		return {name: a, size: b};
 	});
 var _user$project$Main$Model = F5(
 	function (a, b, c, d, e) {
 		return {featureType: a, featureIndex: b, featureIndexOver: c, mask: d, mdl: e};
 	});
+var _user$project$Main$Undefined = {ctor: 'Undefined'};
+var _user$project$Main$Mouth = {ctor: 'Mouth'};
+var _user$project$Main$Nose = {ctor: 'Nose'};
+var _user$project$Main$Eyebrows = {ctor: 'Eyebrows'};
+var _user$project$Main$Eyes = {ctor: 'Eyes'};
+var _user$project$Main$Hair = {ctor: 'Hair'};
+var _user$project$Main$Face = {ctor: 'Face'};
+var _user$project$Main$toFeature = function (x) {
+	var _p3 = x;
+	switch (_p3) {
+		case 0:
+			return _user$project$Main$Face;
+		case 1:
+			return _user$project$Main$Hair;
+		case 2:
+			return _user$project$Main$Eyes;
+		case 3:
+			return _user$project$Main$Eyebrows;
+		case 4:
+			return _user$project$Main$Nose;
+		case 5:
+			return _user$project$Main$Mouth;
+		default:
+			return _user$project$Main$Undefined;
+	}
+};
+var _user$project$Main$renderFeature = F2(
+	function (featureIndex, feature) {
+		if (_elm_lang$core$Native_Utils.eq(featureIndex, 0) && (!_elm_lang$core$Native_Utils.eq(feature, _user$project$Main$Face))) {
+			return A2(
+				_elm_lang$svg$Svg$g,
+				{ctor: '[]'},
+				{ctor: '[]'});
+		} else {
+			var _p4 = feature;
+			switch (_p4.ctor) {
+				case 'Face':
+					return A2(
+						_elm_lang$svg$Svg$g,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$svg$Svg$path,
+								{
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$fill('rgb(255, 234, 189)'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$d(
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														'M70 140 C ',
+														A2(
+															_elm_lang$core$Basics_ops['++'],
+															_elm_lang$core$Basics$toString(110 - (featureIndex * 3)),
+															A2(
+																_elm_lang$core$Basics_ops['++'],
+																' 200, ',
+																A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	_elm_lang$core$Basics$toString(130 + (featureIndex * 3)),
+																	A2(_elm_lang$core$Basics_ops['++'], ' 200', ', 170 140')))))),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$svg$Svg$path,
+									{
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$fill('rgb(255, 234, 189)'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$svg$Svg_Attributes$d(
+														A2(
+															_elm_lang$core$Basics_ops['++'],
+															'M70 140 C ',
+															A2(
+																_elm_lang$core$Basics_ops['++'],
+																_elm_lang$core$Basics$toString(70 - (featureIndex * 3)),
+																A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	' 30, ',
+																	A2(
+																		_elm_lang$core$Basics_ops['++'],
+																		_elm_lang$core$Basics$toString(170 + (featureIndex * 3)),
+																		A2(_elm_lang$core$Basics_ops['++'], ' 30', ', 170 140')))))),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}
+						});
+				case 'Hair':
+					return A2(
+						_elm_lang$svg$Svg$g,
+						{ctor: '[]'},
+						A2(
+							_elm_lang$core$List$map,
+							function (a) {
+								var s = 50.0;
+								var af = _elm_lang$core$Basics$toFloat(a);
+								var alpha = af / 3.14;
+								var e = (55.0 + _elm_lang$core$Basics$toFloat(featureIndex)) + (10 * _elm_lang$core$Basics$sin(alpha));
+								return A2(
+									_elm_lang$svg$Svg$line,
+									{
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$x1(
+											_elm_lang$core$Basics$toString(
+												120 + (s * _elm_lang$core$Basics$cos(alpha)))),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$y1(
+												_elm_lang$core$Basics$toString(
+													120 - (s * _elm_lang$core$Basics$sin(alpha)))),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$x2(
+													_elm_lang$core$Basics$toString(
+														120 + (e * _elm_lang$core$Basics$cos(alpha)))),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$svg$Svg_Attributes$y2(
+														_elm_lang$core$Basics$toString(
+															120 - (e * _elm_lang$core$Basics$sin(alpha)))),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
+									},
+									{ctor: '[]'});
+							},
+							A2(_elm_lang$core$List$range, 0, 10)));
+				case 'Eyes':
+					return A2(
+						_elm_lang$svg$Svg$g,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$svg$Svg$ellipse,
+								{
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$cx('90'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$cy('120'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$rx(
+												_elm_lang$core$Basics$toString(3 + featureIndex)),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$ry(
+													_elm_lang$core$Basics$toString(14 - featureIndex)),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$svg$Svg_Attributes$strokeWidth('2'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$svg$Svg_Attributes$fill('#666'),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$svg$Svg$ellipse,
+									{
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$cx('150'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$cy('120'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$rx(
+													_elm_lang$core$Basics$toString(3 + featureIndex)),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$svg$Svg_Attributes$ry(
+														_elm_lang$core$Basics$toString(14 - featureIndex)),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$svg$Svg_Attributes$strokeWidth('2'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$svg$Svg_Attributes$fill('#666'),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}
+											}
+										}
+									},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}
+						});
+				case 'Eyebrows':
+					return A2(
+						_elm_lang$svg$Svg$g,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$svg$Svg$path,
+								{
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$fill('none'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$d(
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														'M80 100 C ',
+														A2(
+															_elm_lang$core$Basics_ops['++'],
+															_elm_lang$core$Basics$toString(90 - featureIndex),
+															A2(
+																_elm_lang$core$Basics_ops['++'],
+																' 90, ',
+																A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	_elm_lang$core$Basics$toString(90 + featureIndex),
+																	A2(_elm_lang$core$Basics_ops['++'], ' 90', ', 100 100')))))),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$svg$Svg$path,
+									{
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$fill('none'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$svg$Svg_Attributes$d(
+														A2(
+															_elm_lang$core$Basics_ops['++'],
+															'M140 100 C ',
+															A2(
+																_elm_lang$core$Basics_ops['++'],
+																_elm_lang$core$Basics$toString(150 - featureIndex),
+																A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	' 90, ',
+																	A2(
+																		_elm_lang$core$Basics_ops['++'],
+																		_elm_lang$core$Basics$toString(150 + featureIndex),
+																		A2(_elm_lang$core$Basics_ops['++'], ' 90', ', 160 100')))))),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}
+						});
+				case 'Nose':
+					return A2(
+						_elm_lang$svg$Svg$path,
+						{
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$strokeWidth('4'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$fill('none'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$d(
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												'M110 140 C ',
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													_elm_lang$core$Basics$toString(120 - featureIndex),
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														' 150, ',
+														A2(
+															_elm_lang$core$Basics_ops['++'],
+															_elm_lang$core$Basics$toString(120 + featureIndex),
+															A2(_elm_lang$core$Basics_ops['++'], ' 150', ', 130 140')))))),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						},
+						{ctor: '[]'});
+				case 'Mouth':
+					return A2(
+						_elm_lang$svg$Svg$ellipse,
+						{
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$cx('120'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$cy('165'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$rx(
+										_elm_lang$core$Basics$toString(20 - featureIndex)),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$ry(
+											_elm_lang$core$Basics$toString(1 + featureIndex)),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$strokeWidth('2'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$svg$Svg_Attributes$fill('#666'),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						{ctor: '[]'});
+				default:
+					return A2(
+						_elm_lang$svg$Svg$g,
+						{ctor: '[]'},
+						{ctor: '[]'});
+			}
+		}
+	});
+var _user$project$Main$maskView = function (model) {
+	return A2(
+		_elm_lang$svg$Svg$svg,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$width(240),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$height(240),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: _user$project$Main$renderBorder,
+			_1: {
+				ctor: '::',
+				_0: A2(_user$project$Main$renderFeature, model.mask.hair, _user$project$Main$Hair),
+				_1: {
+					ctor: '::',
+					_0: A2(_user$project$Main$renderFeature, model.mask.face, _user$project$Main$Face),
+					_1: {
+						ctor: '::',
+						_0: A2(_user$project$Main$renderFeature, model.mask.eyes, _user$project$Main$Eyes),
+						_1: {
+							ctor: '::',
+							_0: A2(_user$project$Main$renderFeature, model.mask.eyebrows, _user$project$Main$Eyebrows),
+							_1: {
+								ctor: '::',
+								_0: A2(_user$project$Main$renderFeature, model.mask.nose, _user$project$Main$Nose),
+								_1: {
+									ctor: '::',
+									_0: A2(_user$project$Main$renderFeature, model.mask.mouth, _user$project$Main$Mouth),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+};
+var _user$project$Main$Sex = {ctor: 'Sex'};
 var _user$project$Main$Mode = function (a) {
 	return {ctor: 'Mode', _0: a};
 };
@@ -16113,11 +15919,11 @@ var _user$project$Main$renderFeaturePreview = F2(
 												_0: _elm_lang$svg$Svg_Attributes$strokeWidth('1'),
 												_1: {
 													ctor: '::',
-													_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+													_0: _elm_lang$svg$Svg_Attributes$stroke('#fff'),
 													_1: {
 														ctor: '::',
 														_0: _elm_lang$svg$Svg_Attributes$fill(
-															_elm_lang$core$Native_Utils.eq(model.featureIndexOver, featureIndex) ? '#fff' : '#eee'),
+															_elm_lang$core$Native_Utils.eq(model.featureIndexOver, featureIndex) ? '#fff' : '#f1f1f1'),
 														_1: {ctor: '[]'}
 													}
 												}
@@ -16131,7 +15937,17 @@ var _user$project$Main$renderFeaturePreview = F2(
 					{ctor: '[]'}),
 				_1: {
 					ctor: '::',
-					_0: A2(_user$project$Main$renderFeature, featureIndex, model.featureType),
+					_0: (_elm_lang$core$Native_Utils.eq(featureIndex, 0) && (_elm_lang$core$Native_Utils.cmp(model.featureType, 1) > -1)) ? A2(
+						_elm_lang$svg$Svg$image,
+						{
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$xlinkHref('./na.svg'),
+							_1: {ctor: '[]'}
+						},
+						{ctor: '[]'}) : A2(
+						_user$project$Main$renderFeature,
+						featureIndex,
+						_user$project$Main$toFeature(model.featureType)),
 					_1: {
 						ctor: '::',
 						_0: A2(
@@ -16159,7 +15975,7 @@ var _user$project$Main$renderFeaturePreview = F2(
 														_0: _elm_lang$svg$Svg_Attributes$strokeWidth('1'),
 														_1: {
 															ctor: '::',
-															_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
+															_0: _elm_lang$svg$Svg_Attributes$stroke('#ccc'),
 															_1: {
 																ctor: '::',
 																_0: _elm_lang$svg$Svg_Attributes$fill('transparent'),
@@ -16169,9 +15985,14 @@ var _user$project$Main$renderFeaturePreview = F2(
 																		_user$project$Main$Select(featureIndex)),
 																	_1: {
 																		ctor: '::',
-																		_0: _elm_lang$svg$Svg_Events$onMouseOver(
-																			_user$project$Main$SelectOver(featureIndex)),
-																		_1: {ctor: '[]'}
+																		_0: _elm_lang$svg$Svg_Events$onMouseOut(
+																			_user$project$Main$SelectOver(-1)),
+																		_1: {
+																			ctor: '::',
+																			_0: _elm_lang$svg$Svg_Events$onMouseOver(
+																				_user$project$Main$SelectOver(featureIndex)),
+																			_1: {ctor: '[]'}
+																		}
 																	}
 																}
 															}
@@ -16194,36 +16015,37 @@ var _user$project$Main$Mdl = function (a) {
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p2 = msg;
-		switch (_p2.ctor) {
+		var _p5 = msg;
+		switch (_p5.ctor) {
 			case 'Select':
-				var _p3 = _p2._0;
-				var mask_ = A2(_user$project$Main$newMask, _p3, model);
+				var _p6 = _p5._0;
+				var mask_ = A2(_user$project$Main$newMask, _p6, model);
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{featureIndex: _p3, mask: mask_}),
+						{featureIndex: _p6, mask: mask_}),
 					{ctor: '[]'});
 			case 'SelectOver':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{featureIndexOver: _p2._0}),
+						{featureIndexOver: _p5._0}),
 					{ctor: '[]'});
 			case 'Mode':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{featureType: _p2._0, featureIndex: 0}),
+						{featureType: _p5._0, featureIndex: 0}),
 					{ctor: '[]'});
 			default:
-				return A3(_debois$elm_mdl$Material$update, _user$project$Main$Mdl, _p2._0, model);
+				return A3(_debois$elm_mdl$Material$update, _user$project$Main$Mdl, _p5._0, model);
 		}
 	});
 var _user$project$Main$view = function (model) {
+	var feature = _user$project$Main$toFeature(model.featureType);
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
@@ -16243,46 +16065,7 @@ var _user$project$Main$view = function (model) {
 				},
 				{
 					ctor: '::',
-					_0: A2(
-						_elm_lang$svg$Svg$svg,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$width(240),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$height(240),
-								_1: {ctor: '[]'}
-							}
-						},
-						{
-							ctor: '::',
-							_0: _user$project$Main$renderBorder,
-							_1: {
-								ctor: '::',
-								_0: A2(_user$project$Main$renderFeature, model.mask.face, 0),
-								_1: {
-									ctor: '::',
-									_0: A2(_user$project$Main$renderFeature, model.mask.hair, 1),
-									_1: {
-										ctor: '::',
-										_0: A2(_user$project$Main$renderFeature, model.mask.eyes, 2),
-										_1: {
-											ctor: '::',
-											_0: A2(_user$project$Main$renderFeature, model.mask.eyebrows, 3),
-											_1: {
-												ctor: '::',
-												_0: A2(_user$project$Main$renderFeature, model.mask.nose, 4),
-												_1: {
-													ctor: '::',
-													_0: A2(_user$project$Main$renderFeature, model.mask.mouth, 5),
-													_1: {ctor: '[]'}
-												}
-											}
-										}
-									}
-								}
-							}
-						}),
+					_0: _user$project$Main$maskView(model),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
@@ -16313,86 +16096,37 @@ var _user$project$Main$view = function (model) {
 							}
 						}
 					},
-					{
-						ctor: '::',
-						_0: A2(
-							_debois$elm_mdl$Material_Tabs$label,
-							{ctor: '[]'},
-							{
-								ctor: '::',
-								_0: _elm_lang$svg$Svg$text('Face'),
-								_1: {ctor: '[]'}
-							}),
-						_1: {
-							ctor: '::',
-							_0: A2(
+					A2(
+						_elm_lang$core$List$map,
+						function (a) {
+							return A2(
 								_debois$elm_mdl$Material_Tabs$label,
 								{ctor: '[]'},
 								{
 									ctor: '::',
-									_0: _elm_lang$svg$Svg$text('Hair'),
+									_0: _elm_lang$svg$Svg$text(
+										_user$project$Main$palette(
+											_user$project$Main$toFeature(a)).name),
 									_1: {ctor: '[]'}
-								}),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_debois$elm_mdl$Material_Tabs$label,
-									{ctor: '[]'},
-									{
-										ctor: '::',
-										_0: _elm_lang$svg$Svg$text('Eyes'),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_debois$elm_mdl$Material_Tabs$label,
-										{ctor: '[]'},
-										{
-											ctor: '::',
-											_0: _elm_lang$svg$Svg$text('Eyebrow'),
-											_1: {ctor: '[]'}
-										}),
-									_1: {
-										ctor: '::',
-										_0: A2(
-											_debois$elm_mdl$Material_Tabs$label,
-											{ctor: '[]'},
-											{
-												ctor: '::',
-												_0: _elm_lang$svg$Svg$text('Nose'),
-												_1: {ctor: '[]'}
-											}),
-										_1: {
-											ctor: '::',
-											_0: A2(
-												_debois$elm_mdl$Material_Tabs$label,
-												{ctor: '[]'},
-												{
-													ctor: '::',
-													_0: _elm_lang$svg$Svg$text('Mouth'),
-													_1: {ctor: '[]'}
-												}),
-											_1: {ctor: '[]'}
-										}
-									}
-								}
-							}
-						}
-					},
+								});
+						},
+						A2(_elm_lang$core$List$range, 0, 6)),
 					A2(
 						_elm_lang$core$List$map,
 						function (a) {
 							return A2(_user$project$Main$renderFeaturePreview, a, model);
 						},
-						A2(_elm_lang$core$List$range, 0, 20))),
+						A2(
+							_elm_lang$core$List$range,
+							0,
+							_user$project$Main$palette(feature).size))),
 				_1: {ctor: '[]'}
 			}
 		});
 };
 var _user$project$Main$main = _elm_lang$html$Html$program(
 	{
-		init: _user$project$Main$init('todo'),
+		init: _user$project$Main$init(''),
 		view: _user$project$Main$view,
 		update: _user$project$Main$update,
 		subscriptions: _user$project$Main$subscriptions
