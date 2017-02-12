@@ -1,7 +1,11 @@
+
+port module Workspace exposing (..)
+
 import Platform.Cmd exposing (Cmd, none)
+import Platform.Sub exposing (Sub, none)
 
 import Html exposing (Html, div)
-import Html.Attributes 
+import Html.Attributes as Attrs
 
 import Svg exposing (..)
 import Svg.Events
@@ -9,6 +13,12 @@ import Svg.Attributes exposing (..)
 
 import Material
 import Material.Tabs as Tabs
+import Material.Dialog as Dialog 
+import Material.Button as Button
+import Material.Options as Options
+
+port onSave : String -> Cmd msg
+port onDone : (String -> msg) -> Sub msg
 
 type Feature
   = Sex
@@ -71,6 +81,7 @@ type alias Model = {
   featureType: Int,
   featureIndex: Int,
   featureIndexOver: Int,
+  readyToSave: Bool,
   mask: Mask,
   mdl : Material.Model
 }
@@ -80,6 +91,7 @@ model = {
     featureType = 0,
     featureIndex = 0,
     featureIndexOver = -1,
+    readyToSave = False,
     mask = { 
       background = 0,
       sex = 0, 
@@ -113,6 +125,9 @@ type Msg
   | Select (Int)
   | SelectOver (Int)
   | Mode (Int)
+  | ReadyToSave (Bool)
+  | Done String
+  | Save
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -126,6 +141,12 @@ update msg model =
       { model | featureIndexOver = featureIndex_ } ! []
     Mode typeIndex ->
       { model | featureType = typeIndex, featureIndex = 0 } ! []
+    Done msg_ ->
+      model ! []
+    Save ->
+      (model, onSave "")
+    ReadyToSave msg_ ->
+      { model | readyToSave = msg_ } ! []
     Mdl msg_ ->
       Material.update Mdl msg_ model
 
@@ -148,9 +169,32 @@ newMask featureIndex model =
 
 -- VIEW
 
-maskView : Mask -> Html Msg
-maskView mask =
-  Svg.svg [id "avatar", width "240", height "240"]
+dialogView : Model -> Html Msg
+dialogView model = 
+  Dialog.view
+    [ Options.css "width" "530px" ]
+    [ Dialog.title [] [ text "Save As..." ]
+    , Dialog.content [] [ div [Attrs.style [("width", "480px"), ("margin", "0 auto")]]
+        [ div [Attrs.style [("display", "inline-block")]][ 
+            div [Attrs.style [("text-align", "center")]][ text "PNG" ], div [ Attrs.id "save_as_png"] [] 
+          ]
+        , div [Attrs.style [("display", "inline-block")]][ 
+            div [Attrs.style [("text-align", "center")]][ text "SVG" ], div [ Attrs.id "save_as_svg"] [] 
+          ]
+        , div [] [ text "Click right button and select 'Save As...'" ]]
+      ]
+    , Dialog.actions [ ]
+      [ Button.render Mdl [0] model.mdl
+          [ Dialog.closeOn "click" ]
+          [ text "Close" ]]
+    ]
+
+maskView : Model -> Html Msg
+maskView model =
+  let
+    mask = model.mask
+  in
+  Svg.svg [id "preview", width "240", height "240"]
     [ renderBorder mask
     , renderFeature mask Face
     , renderFeature mask Eyes
@@ -158,6 +202,7 @@ maskView mask =
     , renderFeature mask Nose
     , renderFeature mask Mouth
     , renderFeature mask Hair
+    , renderActivator
     ]
 
 view : Model -> Html Msg
@@ -166,7 +211,15 @@ view model =
     feature = toFeature model.featureType
   in
   div []
-    [ div [ Html.Attributes.style [("text-align","center")] ][ maskView model.mask ]
+    [ Button.render Mdl [1] model.mdl
+      [ Dialog.openOn "click", Options.onClick Save, Options.css "position" "absolute"] 
+      [ text "Save" ]
+    , div 
+      [ Attrs.style [("width","240px"), ("margin","0 auto")] ]
+      [
+        maskView model
+      ]
+    , dialogView model
     , Tabs.render Mdl [5,2] model.mdl
         [ Tabs.ripple
         , Tabs.onSelectTab Mode
@@ -179,19 +232,19 @@ view model =
 main : Program Never Model Msg
 main =
   Html.program
-    { init = init ""
+    { init = init
     , view = view
     , update = update
     , subscriptions = subscriptions
     }
 
-init : String -> (Model, Cmd Msg)
-init _ =
+init : (Model, Cmd Msg)
+init =
   ( model , Cmd.none)
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  Sub.none    
+  onDone Done 
   
 -- 
 
@@ -205,6 +258,14 @@ renderBorder mask = Svg.g []
       , stroke "#666"
       , fill (getColor mask.background)][]
   ]
+
+renderActivator : Html Msg
+renderActivator = Svg.g []
+  [ Svg.rect [ x "10", y "10", width "220", height "220", fill "transparent"
+  , Svg.Events.onClick Save
+  , Svg.Events.onMouseOut (ReadyToSave False)
+  , Svg.Events.onMouseOver (ReadyToSave True)
+  ][]]  
 
 renderFeature : Mask -> Feature -> Html Msg
 renderFeature mask feature =

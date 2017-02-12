@@ -14883,6 +14883,99 @@ var _debois$elm_mdl$Material$Model = F8(
 		return {button: a, textfield: b, menu: c, snackbar: d, layout: e, toggles: f, tooltip: g, tabs: h};
 	});
 
+var _debois$elm_mdl$Material_Dialog$theDialog = 'elm-mdl-singleton-dialog';
+var _debois$elm_mdl$Material_Dialog$openOn = function () {
+	var handler = A2(
+		_elm_lang$core$Basics_ops['++'],
+		'\n      // Don\'t mess up the elm runtime.\n      try {\n        var dialog = document.getElementById(\'',
+		A2(_elm_lang$core$Basics_ops['++'], _debois$elm_mdl$Material_Dialog$theDialog, '\');\n        if (! dialog) {\n          console.log (\'Cannot display dialog: No dialog element. Use `Dialog.view` to construct one.\');\n          return;\n        }\n        if (! dialog.showModal) {\n          if (typeof dialogPolyfill !== \'undefined\' && dialogPolyfill.registerDialog) {\n            dialogPolyfill.registerDialog(dialog);\n          } else {\n            console.log (\'Cannot display dialog: Your browser does not support the <dialog> element. Get a polyfill at:\\n\\nhttps://github.com/GoogleChrome/dialog-polyfill\\n\');\n            return;\n          }\n        }\n        dialog.showModal();\n      }\n      catch (e)\n      {\n        console.log (\"A dialog method threw an exception. This is not supposed to happen; likely you\'re using a broken polyfill. If not, please file an issue:\\n\\nhttps://github.com/debois/elm-mdl/issues/new\");\n      }\n      '));
+	return function (event) {
+		return _debois$elm_mdl$Material_Options_Internal$attribute(
+			A2(
+				_elm_lang$html$Html_Attributes$attribute,
+				A2(_elm_lang$core$Basics_ops['++'], 'on', event),
+				handler));
+	};
+}();
+var _debois$elm_mdl$Material_Dialog$closeOn = function () {
+	var handler = A2(
+		_elm_lang$core$Basics_ops['++'],
+		'\n      // Don\'t mess up the elm runtime!\n      try {\n        var dialog = document.getElementById(\'',
+		A2(_elm_lang$core$Basics_ops['++'], _debois$elm_mdl$Material_Dialog$theDialog, '\');\n        if (! dialog) {\n          console.log (\'Cannot close dialog: No dialog element. Use `Dialog.view` to construct one.\');\n          return;\n        }\n        if (! dialog.open) {\n          console.log (\'Cannot close dialog: The dialog is not open. Use `Dialog.closeOn` only on components rendered inside the dialog.\');\n          return;\n        }\n        if (! dialog.close) {\n          console.log (\'Cannot close dialog: The dialog does not have a `close` method. Perhaps you forgot a polyfill? Get one at:\\n\\nhttps://github.com/GoogleChrome/dialog-polyfill\\n\');\n          return;\n        }\n        dialog.close();\n      }\n      catch (e)\n      {\n        console.log (\"A dialog method threw an exception. This is not supposed to happen; likely you\'re using a broken polyfill. If not, please file an issue:\\n\\nhttps://github.com/debois/elm-mdl/issues/new\");\n      }\n      '));
+	return function (event) {
+		return _debois$elm_mdl$Material_Options_Internal$attribute(
+			A2(
+				_elm_lang$html$Html_Attributes$attribute,
+				A2(_elm_lang$core$Basics_ops['++'], 'on', event),
+				handler));
+	};
+}();
+var _debois$elm_mdl$Material_Dialog$contentBlock = function (block) {
+	var _p0 = block;
+	switch (_p0.ctor) {
+		case 'Title':
+			return A2(
+				_debois$elm_mdl$Material_Options$div,
+				{
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Options$cs('mdl-dialog__title'),
+					_1: _p0._0
+				},
+				_p0._1);
+		case 'Content':
+			return A2(
+				_debois$elm_mdl$Material_Options$div,
+				{
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Options$cs('mdl-dialog__content'),
+					_1: _p0._0
+				},
+				_p0._1);
+		default:
+			return A2(
+				_debois$elm_mdl$Material_Options$div,
+				{
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Options$cs('mdl-dialog__actions'),
+					_1: _p0._0
+				},
+				_p0._1);
+	}
+};
+var _debois$elm_mdl$Material_Dialog$view = F2(
+	function (styling, contentBlocks) {
+		return A4(
+			_debois$elm_mdl$Material_Options$styled_,
+			_elm_lang$html$Html$node('dialog'),
+			{
+				ctor: '::',
+				_0: _debois$elm_mdl$Material_Options$cs('mdl-dialog'),
+				_1: styling
+			},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$id(_debois$elm_mdl$Material_Dialog$theDialog),
+				_1: {ctor: '[]'}
+			},
+			A2(_elm_lang$core$List$map, _debois$elm_mdl$Material_Dialog$contentBlock, contentBlocks));
+	});
+var _debois$elm_mdl$Material_Dialog$fullWidth = _debois$elm_mdl$Material_Options$cs('mdl-dialog__actions--full-width');
+var _debois$elm_mdl$Material_Dialog$Actions = F2(
+	function (a, b) {
+		return {ctor: 'Actions', _0: a, _1: b};
+	});
+var _debois$elm_mdl$Material_Dialog$actions = _debois$elm_mdl$Material_Dialog$Actions;
+var _debois$elm_mdl$Material_Dialog$Content = F2(
+	function (a, b) {
+		return {ctor: 'Content', _0: a, _1: b};
+	});
+var _debois$elm_mdl$Material_Dialog$content = _debois$elm_mdl$Material_Dialog$Content;
+var _debois$elm_mdl$Material_Dialog$Title = F2(
+	function (a, b) {
+		return {ctor: 'Title', _0: a, _1: b};
+	});
+var _debois$elm_mdl$Material_Dialog$title = _debois$elm_mdl$Material_Dialog$Title;
+
 var _elm_lang$svg$Svg$map = _elm_lang$virtual_dom$VirtualDom$map;
 var _elm_lang$svg$Svg$text = _elm_lang$virtual_dom$VirtualDom$text;
 var _elm_lang$svg$Svg$svgNamespace = A2(
@@ -15252,7 +15345,7 @@ var _elm_lang$svg$Svg_Events$onMouseOut = _elm_lang$svg$Svg_Events$simpleOn('mou
 var _elm_lang$svg$Svg_Events$onMouseOver = _elm_lang$svg$Svg_Events$simpleOn('mouseover');
 var _elm_lang$svg$Svg_Events$onMouseUp = _elm_lang$svg$Svg_Events$simpleOn('mouseup');
 
-var _user$project$Main$getFeatureFile = F2(
+var _user$project$Workspace$getFeatureFile = F2(
 	function (featureIndex, featureInfo) {
 		return A2(
 			_elm_lang$core$Basics_ops['++'],
@@ -15272,7 +15365,7 @@ var _user$project$Main$getFeatureFile = F2(
 							_elm_lang$core$Basics$toString(featureIndex + 1)),
 						'.svg'))));
 	});
-var _user$project$Main$getHSL = F3(
+var _user$project$Workspace$getHSL = F3(
 	function (h, s, l) {
 		return A2(
 			_elm_lang$core$Basics_ops['++'],
@@ -15294,8 +15387,8 @@ var _user$project$Main$getHSL = F3(
 								_elm_lang$core$Basics$toString(l),
 								'%,1.0)'))))));
 	});
-var _user$project$Main$getSkinTone = A3(_user$project$Main$getHSL, 41, 100, 87);
-var _user$project$Main$getRGB = F3(
+var _user$project$Workspace$getSkinTone = A3(_user$project$Workspace$getHSL, 41, 100, 87);
+var _user$project$Workspace$getRGB = F3(
 	function (r, g, b) {
 		return A2(
 			_elm_lang$core$Basics_ops['++'],
@@ -15317,10 +15410,10 @@ var _user$project$Main$getRGB = F3(
 								_elm_lang$core$Basics$toString(b),
 								')'))))));
 	});
-var _user$project$Main$getColor = function (c) {
-	return _elm_lang$core$Native_Utils.eq(c, 0) ? '#eee' : A3(_user$project$Main$getHSL, 100 + (c * 14), 90, 80);
+var _user$project$Workspace$getColor = function (c) {
+	return _elm_lang$core$Native_Utils.eq(c, 0) ? '#eee' : A3(_user$project$Workspace$getHSL, 100 + (c * 14), 90, 80);
 };
-var _user$project$Main$renderGenFeature = F3(
+var _user$project$Workspace$renderGenFeature = F3(
 	function (mask, feature, featureIndex) {
 		var _p0 = feature;
 		switch (_p0.ctor) {
@@ -15354,7 +15447,7 @@ var _user$project$Main$renderGenFeature = F3(
 													_1: {
 														ctor: '::',
 														_0: _elm_lang$svg$Svg_Attributes$fill(
-															_user$project$Main$getColor(featureIndex)),
+															_user$project$Workspace$getColor(featureIndex)),
 														_1: {ctor: '[]'}
 													}
 												}
@@ -15382,7 +15475,7 @@ var _user$project$Main$renderGenFeature = F3(
 									_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
 									_1: {
 										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$fill(_user$project$Main$getSkinTone),
+										_0: _elm_lang$svg$Svg_Attributes$fill(_user$project$Workspace$getSkinTone),
 										_1: {
 											ctor: '::',
 											_0: _elm_lang$svg$Svg_Attributes$d(
@@ -15417,7 +15510,7 @@ var _user$project$Main$renderGenFeature = F3(
 										_0: _elm_lang$svg$Svg_Attributes$stroke('#666'),
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$fill(_user$project$Main$getSkinTone),
+											_0: _elm_lang$svg$Svg_Attributes$fill(_user$project$Workspace$getSkinTone),
 											_1: {
 												ctor: '::',
 												_0: _elm_lang$svg$Svg_Attributes$d(
@@ -15724,7 +15817,7 @@ var _user$project$Main$renderGenFeature = F3(
 					{ctor: '[]'});
 		}
 	});
-var _user$project$Main$renderBorder = function (mask) {
+var _user$project$Workspace$renderBorder = function (mask) {
 	return A2(
 		_elm_lang$svg$Svg$g,
 		{ctor: '[]'},
@@ -15750,7 +15843,7 @@ var _user$project$Main$renderBorder = function (mask) {
 									_1: {
 										ctor: '::',
 										_0: _elm_lang$svg$Svg_Attributes$fill(
-											_user$project$Main$getColor(mask.background)),
+											_user$project$Workspace$getColor(mask.background)),
 										_1: {ctor: '[]'}
 									}
 								}
@@ -15762,10 +15855,7 @@ var _user$project$Main$renderBorder = function (mask) {
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$Main$subscriptions = function (model) {
-	return _elm_lang$core$Platform_Sub$none;
-};
-var _user$project$Main$getFeature = F2(
+var _user$project$Workspace$getFeature = F2(
 	function (mask, feature) {
 		var _p1 = feature;
 		switch (_p1.ctor) {
@@ -15789,19 +15879,18 @@ var _user$project$Main$getFeature = F2(
 				return 0;
 		}
 	});
-var _user$project$Main$model = {
+var _user$project$Workspace$model = {
 	featureType: 0,
 	featureIndex: 0,
 	featureIndexOver: -1,
+	readyToSave: false,
 	mask: {background: 0, sex: 0, face: 0, hair: 0, eyes: 4, eyebrows: 1, nose: 0, mouth: 1},
 	mdl: _debois$elm_mdl$Material$model
 };
-var _user$project$Main$init = function (_p2) {
-	return {ctor: '_Tuple2', _0: _user$project$Main$model, _1: _elm_lang$core$Platform_Cmd$none};
-};
-var _user$project$Main$getPalette = function (x) {
-	var _p3 = x;
-	switch (_p3.ctor) {
+var _user$project$Workspace$init = {ctor: '_Tuple2', _0: _user$project$Workspace$model, _1: _elm_lang$core$Platform_Cmd$none};
+var _user$project$Workspace$getPalette = function (x) {
+	var _p2 = x;
+	switch (_p2.ctor) {
 		case 'Sex':
 			return {name: 'Sex', required: true, path: '', presetSize: 0, size: 0};
 		case 'Face':
@@ -15822,9 +15911,9 @@ var _user$project$Main$getPalette = function (x) {
 			return {name: '', required: false, path: '', presetSize: 0, size: 0};
 	}
 };
-var _user$project$Main$renderFeatureWitIndex = F3(
+var _user$project$Workspace$renderFeatureWitIndex = F3(
 	function (mask, feature, featureIndex) {
-		var featureInfo = _user$project$Main$getPalette(feature);
+		var featureInfo = _user$project$Workspace$getPalette(feature);
 		return (_elm_lang$core$Native_Utils.eq(featureIndex, 0) && (!_elm_lang$core$Native_Utils.eq(featureInfo.required, true))) ? A2(
 			_elm_lang$svg$Svg$g,
 			{ctor: '[]'},
@@ -15833,66 +15922,72 @@ var _user$project$Main$renderFeatureWitIndex = F3(
 			{
 				ctor: '::',
 				_0: _elm_lang$svg$Svg_Attributes$xlinkHref(
-					A2(_user$project$Main$getFeatureFile, featureIndex, featureInfo)),
+					A2(_user$project$Workspace$getFeatureFile, featureIndex, featureInfo)),
 				_1: {ctor: '[]'}
 			},
-			{ctor: '[]'}) : A3(_user$project$Main$renderGenFeature, mask, feature, featureIndex));
+			{ctor: '[]'}) : A3(_user$project$Workspace$renderGenFeature, mask, feature, featureIndex));
 	});
-var _user$project$Main$renderFeature = F2(
+var _user$project$Workspace$renderFeature = F2(
 	function (mask, feature) {
 		return A3(
-			_user$project$Main$renderFeatureWitIndex,
+			_user$project$Workspace$renderFeatureWitIndex,
 			mask,
 			feature,
-			A2(_user$project$Main$getFeature, mask, feature));
+			A2(_user$project$Workspace$getFeature, mask, feature));
 	});
-var _user$project$Main$Mask = F8(
+var _user$project$Workspace$onSave = _elm_lang$core$Native_Platform.outgoingPort(
+	'onSave',
+	function (v) {
+		return v;
+	});
+var _user$project$Workspace$onDone = _elm_lang$core$Native_Platform.incomingPort('onDone', _elm_lang$core$Json_Decode$string);
+var _user$project$Workspace$Mask = F8(
 	function (a, b, c, d, e, f, g, h) {
 		return {sex: a, face: b, hair: c, eyes: d, eyebrows: e, nose: f, mouth: g, background: h};
 	});
-var _user$project$Main$Palette = F5(
+var _user$project$Workspace$Palette = F5(
 	function (a, b, c, d, e) {
 		return {name: a, required: b, path: c, presetSize: d, size: e};
 	});
-var _user$project$Main$Model = F5(
-	function (a, b, c, d, e) {
-		return {featureType: a, featureIndex: b, featureIndexOver: c, mask: d, mdl: e};
+var _user$project$Workspace$Model = F6(
+	function (a, b, c, d, e, f) {
+		return {featureType: a, featureIndex: b, featureIndexOver: c, readyToSave: d, mask: e, mdl: f};
 	});
-var _user$project$Main$Undefined = {ctor: 'Undefined'};
-var _user$project$Main$Background = {ctor: 'Background'};
-var _user$project$Main$Mouth = {ctor: 'Mouth'};
-var _user$project$Main$Nose = {ctor: 'Nose'};
-var _user$project$Main$Eyebrows = {ctor: 'Eyebrows'};
-var _user$project$Main$Eyes = {ctor: 'Eyes'};
-var _user$project$Main$Hair = {ctor: 'Hair'};
-var _user$project$Main$Face = {ctor: 'Face'};
-var _user$project$Main$toFeature = function (x) {
-	var _p4 = x;
-	switch (_p4) {
+var _user$project$Workspace$Undefined = {ctor: 'Undefined'};
+var _user$project$Workspace$Background = {ctor: 'Background'};
+var _user$project$Workspace$Mouth = {ctor: 'Mouth'};
+var _user$project$Workspace$Nose = {ctor: 'Nose'};
+var _user$project$Workspace$Eyebrows = {ctor: 'Eyebrows'};
+var _user$project$Workspace$Eyes = {ctor: 'Eyes'};
+var _user$project$Workspace$Hair = {ctor: 'Hair'};
+var _user$project$Workspace$Face = {ctor: 'Face'};
+var _user$project$Workspace$toFeature = function (x) {
+	var _p3 = x;
+	switch (_p3) {
 		case 0:
-			return _user$project$Main$Face;
+			return _user$project$Workspace$Face;
 		case 1:
-			return _user$project$Main$Hair;
+			return _user$project$Workspace$Hair;
 		case 2:
-			return _user$project$Main$Eyes;
+			return _user$project$Workspace$Eyes;
 		case 3:
-			return _user$project$Main$Eyebrows;
+			return _user$project$Workspace$Eyebrows;
 		case 4:
-			return _user$project$Main$Nose;
+			return _user$project$Workspace$Nose;
 		case 5:
-			return _user$project$Main$Mouth;
+			return _user$project$Workspace$Mouth;
 		case 6:
-			return _user$project$Main$Background;
+			return _user$project$Workspace$Background;
 		default:
-			return _user$project$Main$Undefined;
+			return _user$project$Workspace$Undefined;
 	}
 };
-var _user$project$Main$newMask = F2(
+var _user$project$Workspace$newMask = F2(
 	function (featureIndex, model) {
-		var feature = _user$project$Main$toFeature(model.featureType);
+		var feature = _user$project$Workspace$toFeature(model.featureType);
 		var mask = model.mask;
-		var _p5 = feature;
-		switch (_p5.ctor) {
+		var _p4 = feature;
+		switch (_p4.ctor) {
 			case 'Face':
 				return _elm_lang$core$Native_Utils.update(
 					mask,
@@ -15931,12 +16026,69 @@ var _user$project$Main$newMask = F2(
 					{mouth: featureIndex});
 		}
 	});
-var _user$project$Main$maskView = function (mask) {
+var _user$project$Workspace$Sex = {ctor: 'Sex'};
+var _user$project$Workspace$Save = {ctor: 'Save'};
+var _user$project$Workspace$Done = function (a) {
+	return {ctor: 'Done', _0: a};
+};
+var _user$project$Workspace$subscriptions = function (model) {
+	return _user$project$Workspace$onDone(_user$project$Workspace$Done);
+};
+var _user$project$Workspace$ReadyToSave = function (a) {
+	return {ctor: 'ReadyToSave', _0: a};
+};
+var _user$project$Workspace$renderActivator = A2(
+	_elm_lang$svg$Svg$g,
+	{ctor: '[]'},
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$svg$Svg$rect,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$x('10'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$y('10'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$width('220'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$height('220'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$fill('transparent'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Events$onClick(_user$project$Workspace$Save),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Events$onMouseOut(
+											_user$project$Workspace$ReadyToSave(false)),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Events$onMouseOver(
+												_user$project$Workspace$ReadyToSave(true)),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{ctor: '[]'}),
+		_1: {ctor: '[]'}
+	});
+var _user$project$Workspace$maskView = function (model) {
+	var mask = model.mask;
 	return A2(
 		_elm_lang$svg$Svg$svg,
 		{
 			ctor: '::',
-			_0: _elm_lang$svg$Svg_Attributes$id('avatar'),
+			_0: _elm_lang$svg$Svg_Attributes$id('preview'),
 			_1: {
 				ctor: '::',
 				_0: _elm_lang$svg$Svg_Attributes$width('240'),
@@ -15949,26 +16101,30 @@ var _user$project$Main$maskView = function (mask) {
 		},
 		{
 			ctor: '::',
-			_0: _user$project$Main$renderBorder(mask),
+			_0: _user$project$Workspace$renderBorder(mask),
 			_1: {
 				ctor: '::',
-				_0: A2(_user$project$Main$renderFeature, mask, _user$project$Main$Face),
+				_0: A2(_user$project$Workspace$renderFeature, mask, _user$project$Workspace$Face),
 				_1: {
 					ctor: '::',
-					_0: A2(_user$project$Main$renderFeature, mask, _user$project$Main$Eyes),
+					_0: A2(_user$project$Workspace$renderFeature, mask, _user$project$Workspace$Eyes),
 					_1: {
 						ctor: '::',
-						_0: A2(_user$project$Main$renderFeature, mask, _user$project$Main$Eyebrows),
+						_0: A2(_user$project$Workspace$renderFeature, mask, _user$project$Workspace$Eyebrows),
 						_1: {
 							ctor: '::',
-							_0: A2(_user$project$Main$renderFeature, mask, _user$project$Main$Nose),
+							_0: A2(_user$project$Workspace$renderFeature, mask, _user$project$Workspace$Nose),
 							_1: {
 								ctor: '::',
-								_0: A2(_user$project$Main$renderFeature, mask, _user$project$Main$Mouth),
+								_0: A2(_user$project$Workspace$renderFeature, mask, _user$project$Workspace$Mouth),
 								_1: {
 									ctor: '::',
-									_0: A2(_user$project$Main$renderFeature, mask, _user$project$Main$Hair),
-									_1: {ctor: '[]'}
+									_0: A2(_user$project$Workspace$renderFeature, mask, _user$project$Workspace$Hair),
+									_1: {
+										ctor: '::',
+										_0: _user$project$Workspace$renderActivator,
+										_1: {ctor: '[]'}
+									}
 								}
 							}
 						}
@@ -15977,20 +16133,19 @@ var _user$project$Main$maskView = function (mask) {
 			}
 		});
 };
-var _user$project$Main$Sex = {ctor: 'Sex'};
-var _user$project$Main$Mode = function (a) {
+var _user$project$Workspace$Mode = function (a) {
 	return {ctor: 'Mode', _0: a};
 };
-var _user$project$Main$SelectOver = function (a) {
+var _user$project$Workspace$SelectOver = function (a) {
 	return {ctor: 'SelectOver', _0: a};
 };
-var _user$project$Main$Select = function (a) {
+var _user$project$Workspace$Select = function (a) {
 	return {ctor: 'Select', _0: a};
 };
-var _user$project$Main$renderFeaturePreview = F2(
+var _user$project$Workspace$renderFeaturePreview = F2(
 	function (featureIndex, model) {
-		var feature = _user$project$Main$toFeature(model.featureType);
-		var featureInfo = _user$project$Main$getPalette(feature);
+		var feature = _user$project$Workspace$toFeature(model.featureType);
+		var featureInfo = _user$project$Workspace$getPalette(feature);
 		return A2(
 			_elm_lang$svg$Svg$svg,
 			{
@@ -16058,7 +16213,7 @@ var _user$project$Main$renderFeaturePreview = F2(
 							_0: _elm_lang$svg$Svg_Attributes$xlinkHref('assets/svg/na.svg'),
 							_1: {ctor: '[]'}
 						},
-						{ctor: '[]'}) : A3(_user$project$Main$renderFeatureWitIndex, model.mask, feature, featureIndex),
+						{ctor: '[]'}) : A3(_user$project$Workspace$renderFeatureWitIndex, model.mask, feature, featureIndex),
 					_1: {
 						ctor: '::',
 						_0: A2(
@@ -16093,15 +16248,15 @@ var _user$project$Main$renderFeaturePreview = F2(
 																_1: {
 																	ctor: '::',
 																	_0: _elm_lang$svg$Svg_Events$onClick(
-																		_user$project$Main$Select(featureIndex)),
+																		_user$project$Workspace$Select(featureIndex)),
 																	_1: {
 																		ctor: '::',
 																		_0: _elm_lang$svg$Svg_Events$onMouseOut(
-																			_user$project$Main$SelectOver(-1)),
+																			_user$project$Workspace$SelectOver(-1)),
 																		_1: {
 																			ctor: '::',
 																			_0: _elm_lang$svg$Svg_Events$onMouseOver(
-																				_user$project$Main$SelectOver(featureIndex)),
+																				_user$project$Workspace$SelectOver(featureIndex)),
 																			_1: {ctor: '[]'}
 																		}
 																	}
@@ -16121,132 +16276,365 @@ var _user$project$Main$renderFeaturePreview = F2(
 				}
 			});
 	});
-var _user$project$Main$Mdl = function (a) {
+var _user$project$Workspace$Mdl = function (a) {
 	return {ctor: 'Mdl', _0: a};
 };
-var _user$project$Main$update = F2(
+var _user$project$Workspace$update = F2(
 	function (msg, model) {
-		var _p6 = msg;
-		switch (_p6.ctor) {
+		var _p5 = msg;
+		switch (_p5.ctor) {
 			case 'Select':
-				var _p7 = _p6._0;
-				var mask_ = A2(_user$project$Main$newMask, _p7, model);
+				var _p6 = _p5._0;
+				var mask_ = A2(_user$project$Workspace$newMask, _p6, model);
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{featureIndex: _p7, mask: mask_}),
+						{featureIndex: _p6, mask: mask_}),
 					{ctor: '[]'});
 			case 'SelectOver':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{featureIndexOver: _p6._0}),
+						{featureIndexOver: _p5._0}),
 					{ctor: '[]'});
 			case 'Mode':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						model,
-						{featureType: _p6._0, featureIndex: 0}),
+						{featureType: _p5._0, featureIndex: 0}),
+					{ctor: '[]'});
+			case 'Done':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
+					{ctor: '[]'});
+			case 'Save':
+				return {
+					ctor: '_Tuple2',
+					_0: model,
+					_1: _user$project$Workspace$onSave('')
+				};
+			case 'ReadyToSave':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{readyToSave: _p5._0}),
 					{ctor: '[]'});
 			default:
-				return A3(_debois$elm_mdl$Material$update, _user$project$Main$Mdl, _p6._0, model);
+				return A3(_debois$elm_mdl$Material$update, _user$project$Workspace$Mdl, _p5._0, model);
 		}
 	});
-var _user$project$Main$view = function (model) {
-	var feature = _user$project$Main$toFeature(model.featureType);
+var _user$project$Workspace$dialogView = function (model) {
+	return A2(
+		_debois$elm_mdl$Material_Dialog$view,
+		{
+			ctor: '::',
+			_0: A2(_debois$elm_mdl$Material_Options$css, 'width', '530px'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_debois$elm_mdl$Material_Dialog$title,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg$text('Save As...'),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_debois$elm_mdl$Material_Dialog$content,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$style(
+									{
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'width', _1: '480px'},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'margin', _1: '0 auto'},
+											_1: {ctor: '[]'}
+										}
+									}),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$div,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$style(
+											{
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 'display', _1: 'inline-block'},
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$div,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$style(
+													{
+														ctor: '::',
+														_0: {ctor: '_Tuple2', _0: 'text-align', _1: 'center'},
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$svg$Svg$text('PNG'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$div,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$id('save_as_png'),
+													_1: {ctor: '[]'}
+												},
+												{ctor: '[]'}),
+											_1: {ctor: '[]'}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$div,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$style(
+												{
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: 'display', _1: 'inline-block'},
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$div,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$style(
+														{
+															ctor: '::',
+															_0: {ctor: '_Tuple2', _0: 'text-align', _1: 'center'},
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: _elm_lang$svg$Svg$text('SVG'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$div,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$id('save_as_svg'),
+														_1: {ctor: '[]'}
+													},
+													{ctor: '[]'}),
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$div,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _elm_lang$svg$Svg$text('Click right button and select \'Save As...\''),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_debois$elm_mdl$Material_Dialog$actions,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A5(
+								_debois$elm_mdl$Material_Button$render,
+								_user$project$Workspace$Mdl,
+								{
+									ctor: '::',
+									_0: 0,
+									_1: {ctor: '[]'}
+								},
+								model.mdl,
+								{
+									ctor: '::',
+									_0: _debois$elm_mdl$Material_Dialog$closeOn('click'),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$svg$Svg$text('Close'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _user$project$Workspace$view = function (model) {
+	var feature = _user$project$Workspace$toFeature(model.featureType);
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
 		{
 			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$div,
+			_0: A5(
+				_debois$elm_mdl$Material_Button$render,
+				_user$project$Workspace$Mdl,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$style(
-						{
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'text-align', _1: 'center'},
-							_1: {ctor: '[]'}
-						}),
+					_0: 1,
 					_1: {ctor: '[]'}
+				},
+				model.mdl,
+				{
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Dialog$openOn('click'),
+					_1: {
+						ctor: '::',
+						_0: _debois$elm_mdl$Material_Options$onClick(_user$project$Workspace$Save),
+						_1: {
+							ctor: '::',
+							_0: A2(_debois$elm_mdl$Material_Options$css, 'position', 'absolute'),
+							_1: {ctor: '[]'}
+						}
+					}
 				},
 				{
 					ctor: '::',
-					_0: _user$project$Main$maskView(model.mask),
+					_0: _elm_lang$svg$Svg$text('Save'),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
 				ctor: '::',
-				_0: A6(
-					_debois$elm_mdl$Material_Tabs$render,
-					_user$project$Main$Mdl,
+				_0: A2(
+					_elm_lang$html$Html$div,
 					{
 						ctor: '::',
-						_0: 5,
-						_1: {
-							ctor: '::',
-							_0: 2,
-							_1: {ctor: '[]'}
-						}
-					},
-					model.mdl,
-					{
-						ctor: '::',
-						_0: _debois$elm_mdl$Material_Tabs$ripple,
-						_1: {
-							ctor: '::',
-							_0: _debois$elm_mdl$Material_Tabs$onSelectTab(_user$project$Main$Mode),
-							_1: {
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
 								ctor: '::',
-								_0: _debois$elm_mdl$Material_Tabs$activeTab(model.featureType),
-								_1: {ctor: '[]'}
-							}
-						}
-					},
-					A2(
-						_elm_lang$core$List$map,
-						function (a) {
-							return A2(
-								_debois$elm_mdl$Material_Tabs$label,
-								{ctor: '[]'},
-								{
+								_0: {ctor: '_Tuple2', _0: 'width', _1: '240px'},
+								_1: {
 									ctor: '::',
-									_0: _elm_lang$svg$Svg$text(
-										_user$project$Main$getPalette(
-											_user$project$Main$toFeature(a)).name),
+									_0: {ctor: '_Tuple2', _0: 'margin', _1: '0 auto'},
 									_1: {ctor: '[]'}
-								});
-						},
-						A2(_elm_lang$core$List$range, 0, 7)),
-					A2(
-						_elm_lang$core$List$map,
-						function (a) {
-							return A2(_user$project$Main$renderFeaturePreview, a, model);
-						},
-						A2(
-							_elm_lang$core$List$range,
-							0,
-							_user$project$Main$getPalette(feature).size))),
-				_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _user$project$Workspace$maskView(model),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _user$project$Workspace$dialogView(model),
+					_1: {
+						ctor: '::',
+						_0: A6(
+							_debois$elm_mdl$Material_Tabs$render,
+							_user$project$Workspace$Mdl,
+							{
+								ctor: '::',
+								_0: 5,
+								_1: {
+									ctor: '::',
+									_0: 2,
+									_1: {ctor: '[]'}
+								}
+							},
+							model.mdl,
+							{
+								ctor: '::',
+								_0: _debois$elm_mdl$Material_Tabs$ripple,
+								_1: {
+									ctor: '::',
+									_0: _debois$elm_mdl$Material_Tabs$onSelectTab(_user$project$Workspace$Mode),
+									_1: {
+										ctor: '::',
+										_0: _debois$elm_mdl$Material_Tabs$activeTab(model.featureType),
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							A2(
+								_elm_lang$core$List$map,
+								function (a) {
+									return A2(
+										_debois$elm_mdl$Material_Tabs$label,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _elm_lang$svg$Svg$text(
+												_user$project$Workspace$getPalette(
+													_user$project$Workspace$toFeature(a)).name),
+											_1: {ctor: '[]'}
+										});
+								},
+								A2(_elm_lang$core$List$range, 0, 7)),
+							A2(
+								_elm_lang$core$List$map,
+								function (a) {
+									return A2(_user$project$Workspace$renderFeaturePreview, a, model);
+								},
+								A2(
+									_elm_lang$core$List$range,
+									0,
+									_user$project$Workspace$getPalette(feature).size))),
+						_1: {ctor: '[]'}
+					}
+				}
 			}
 		});
 };
-var _user$project$Main$main = _elm_lang$html$Html$program(
-	{
-		init: _user$project$Main$init(''),
-		view: _user$project$Main$view,
-		update: _user$project$Main$update,
-		subscriptions: _user$project$Main$subscriptions
-	})();
+var _user$project$Workspace$main = _elm_lang$html$Html$program(
+	{init: _user$project$Workspace$init, view: _user$project$Workspace$view, update: _user$project$Workspace$update, subscriptions: _user$project$Workspace$subscriptions})();
 
 var Elm = {};
-Elm['Main'] = Elm['Main'] || {};
-if (typeof _user$project$Main$main !== 'undefined') {
-    _user$project$Main$main(Elm['Main'], 'Main', undefined);
+Elm['Workspace'] = Elm['Workspace'] || {};
+if (typeof _user$project$Workspace$main !== 'undefined') {
+    _user$project$Workspace$main(Elm['Workspace'], 'Workspace', undefined);
 }
 
 if (typeof define === "function" && define['amd'])
