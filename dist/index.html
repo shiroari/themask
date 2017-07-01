@@ -12,7 +12,7 @@
 <body>
     <a class="github-fork-ribbon" href="https://github.com/shiroari/themask" title="Fork me on GitHub">Fork me on GitHub</a>
     <script>
-	    var app = Elm.Workspace.fullscreen();
+	    var app = Elm.Main.fullscreen();
         app.ports.onSave.subscribe(function(event) {
             helper.save(event, function(event) {
                 app.ports.onDone.send(event);
